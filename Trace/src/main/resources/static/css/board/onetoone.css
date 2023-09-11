@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+
+#otobd {
+	margin: 0;
+	padding: 0;
+}
+
+#onetoonetxt {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 14px;
+	resize: none;
+	/* Allow vertical resizing */
+}
+
+#onetoonetxt:hover {
+	border-color: #999;
+}
+
+#onetoonetxt:focus {
+	border-color: #007bff;
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+#otoform {
+	margin: 20px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+.otbspan{
+	display: inline-block;
+	width: 150px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	
+}
+
+.otoetcselect {
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+#title {
+	width: 500px;
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+
+}
+
+.ototb {
+
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 8px;
+
+
+
+}
+
+#otoa a {
+	text-decoration: none;
+
+}
+
+.ototb th {
+	background-color: #f2f2f2;
+	padding: 10px;
+	text-align: left;
+}
+
+.ototb tr {
+	margin: auto;
+	border-bottom: 1px solid rgb(0, 128, 255);
+}
+
+.ototb td {
+	margin: auto;
+	padding: 10px;
+}
+
+#otoa {
+	color: #007bff;
+}
+
+.ototitletd {
+	width: 150px;
+	max-width: 150px;
+	max-height: 45px;
+}

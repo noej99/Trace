@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+#qbUpdate {
+	margin-bottom: 70px;
+}
+
+#qbUpdate .uTd1 input{
+	width: 900px;
+	height: 40px;
+}
+
+#qbUpdate .uBtn {
+	padding: 10px;
+	background-color: transparent;
+	border: none;
+	font-size: 12pt;
+	margin-top: 10px;
+}

@@ -1,0 +1,184 @@
+@charset "UTF-8";
+
+
+#drtbl * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border-spacing: 0px;
+}
+
+input {
+	border: none;
+	outline: none;
+}
+
+#drTbl1 {
+	width: 800px;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border-spacing: 0px;
+}
+
+#drTbl1 td {
+	height: 40px;
+	padding: 5px;
+}
+
+.drNotice td {
+	border-top: #ccc dotted 1px;
+	font-size: 10pt;
+}
+
+.drNotice:nth-child(3) td {
+	border-top: none;
+}
+
+.drNotice td a {
+	display: inline-block;
+	max-width: 350px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.drNotice + .drPost td {
+	border-top: #333 solid 2px;
+}
+
+#drTbl1 tr:nth-child(2) td {
+	border-bottom: #333 solid 2px;
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+#drTbl1 tr:nth-child(2) td:nth-child(1) {
+	width: 7%;
+}
+
+#drTbl1 tr:nth-child(2) td:nth-child(2) {
+	width: 45%;
+	text-align: center;
+}
+
+#drTbl1 tr:nth-child(2) td:nth-child(3) {
+	width: 20%;
+	max-width: 20%;
+	text-overflow: ellipsis;
+}
+
+#drTbl1 tr:nth-child(2) td:nth-child(4) {
+	width: 14%;
+}
+
+#drTbl1 tr:nth-child(2) td:nth-child(5) {
+	width: 7%;
+}
+
+#drTbl1 tr:nth-child(2) td:nth-child(6) {
+	width: 7%;
+}
+
+.drPost td {
+	border-bottom: #ccc dotted 1px;
+	font-size: 10pt;
+}
+
+.drPost td a {
+	display: inline-block;
+	max-width: 350px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#drTbl1 tr:nth-last-child(3) td {
+	border-bottom: #333 solid 1px;
+}
+
+#drTbl1 tr td:nth-child(2) {
+	text-align: initial;
+}
+
+#drTbl1 tr td:nth-child(2) a {
+	text-decoration: none;
+	color: #333;
+}
+
+#drTbl1 tr td:nth-child(3) {
+	width: 5%;
+}
+
+#drTbl1 tr td:nth-child(4) {
+	max-width: 117px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#drTblPageTd {
+	text-align: center;
+	border-bottom: none;
+}
+
+#drPageRow {
+	text-align: center;
+	display: inline-block;
+	font-size: 0;
+}
+
+.drPageBtn {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	margin: 0 3px;
+	font-size: 10pt;
+	text-decoration: none;
+	color: #333;
+	border: #333 solid 1px;
+}
+
+.drPageBtn:hover {
+	background-color: #333;
+	color: #fff;
+}
+
+#curPage {
+	background-color: #ccc;
+}
+
+#curPage:hover {
+	color: #333;
+	background-color: #ccc;
+}
+
+#drSearch div {
+	text-align: center;
+}
+
+#drSearch form {
+	text-align: center;
+	padding-left: 115px;
+}
+
+#drSearch input {
+	border: #ccc solid 1px;
+	height: 19px;
+	border-radius: 3px;
+}
+
+#drWriteBtn {
+	display: inline-block;
+	padding: 4px 6px;
+	text-decoration: none;
+	color: #333;
+	border: #333 solid 1px;
+	font-size: 10pt;
+	border-radius: 5px;
+}
+
+#drWriteBtn:hover {
+	background-color: #ccc;
+}

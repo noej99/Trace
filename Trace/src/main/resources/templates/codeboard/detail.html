@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>코드게시판</title>
+</head>
+<body th:fragment="codeboardDetail">
+	<table id="codeBoardTitleTbl">
+		<tr>
+			<td>
+				<h2 align="left"><a href="/codeboard.main.go">코드공유 게시판</a></h2>
+				<hr>
+			</td>
+		</tr>
+	</table>
+	<div id="codeboardDetailDiv" th:each="d : ${cbDetails}">
+		<div class="detailTitle">
+			<h1 th:text="${d.title}"></h1>
+		</div>
+		<div>
+			<button class="cbReport"th:if="${session.loginMember != null and session.loginMember.id != d.writer.id1}" th:onclick="openWindowPop('CodeBoard','[[${d.no}]]');">신고</button>
+			<div th:if="${session.loginMember != null and session.loginMember.id == d.writer.id1 or session.admin != null}" class="cbDivUpDel">
+			    <a th:href="@{codeboard.update.go(no=${d.no})}" class="cbDivUp">수정</a>
+			    <a th:href="@{codeboard.delete(no=${d.no}) }" onclick="return confirm('정말 삭제하시겠습니까?')" class="cbDivDel">삭제</a>
+			</div>
+		</div>
+		<div class="cbDetailInfo">
+			<img class="cbWriterImg" th:src="${d.writer.icon1}" alt="">
+			<span class="cbDetailWriter" th:text="${d.writer.nick1}"></span>
+			<span class="cbDetailDate" th:text="${#dates.format(d.date, 'yyyy-MM-dd')}"></span>
+		</div>
+		<br><br><br><br><br><br>
+		<div class="cbDetailTxt" th:utext="${d.txt}" align="left"></div>
+		<hr>
+		<h3 align="left">댓글</h3>
+		<div id="replyList">
+		    <ul>
+				<li th:each="r : ${d.replys}" class="cbReplyList">
+				    <img class="cbWriterImg" th:src="${r.cbrWriter.icon1}" alt="">
+				    <span class="cbReplyWriter" th:text="${r.cbrWriter.nick1}"></span>
+				    <span class="cbReplyDate" th:text="${#dates.format(r.date, 'yyyy-MM-dd')}"></span>
+				    <br>
+				    <p>
+				    <span class="cbReplyTxt" th:text="${r.txt}"></span>
+				    <div th:unless="${session.admin != null}">
+				        <div align="right" th:if="${session.loginMember != null and session.loginMember.id == r.cbrWriter.id1}">
+				            <button class="cbReplyDel" th:onclick="deleteReply([[${r.no}]], [[${d.no}]])">삭제</button>
+				        </div>
+				    </div>
+				  	<div align="right" th:if="${session.admin != null}">
+				    	<button class="cbReplyDel" th:onclick="deleteReply([[${r.no}]], [[${d.no}]])">삭제</button>
+					</div>
+					<br>
+				</li>
+		    </ul>
+		</div>
+		<div th:if="${session.loginMember != null}" id="cbReplyForm">
+		    <form action="/codeboard.reply" method="post">
+				<input id="cbReplyTxt" name="txt" placeholder="댓글을 입력하세요" required>
+				<input name="cbrCN" th:value="${cbDetails[0].no}" hidden="hidden">
+				<input name="cbrWriter" th:value="${session.loginMember.id}" hidden="hidden">
+				<input name="cbNo" th:value="${cbDetails[0].no}" hidden="hidden">
+				<input name="token" th:value="${token}" hidden="hidden">
+				<button id="cbReplyBtn" type="submit">등록</button>
+			</form>
+		</div>
+		<div th:unless="${session.loginMember != null}">
+		    <p>로그인 후에 댓글을 작성할 수 있습니다.</p>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/codeboard/codeboardReply.js"></script>
+</body>
+</html>

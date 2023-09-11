@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+
+#jointitleArea {
+	background-color: white;
+	width: 100%;
+	height: 150px;
+	border-bottom: black solid 3px;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	font-size: 50pt;
+	font-weight: 900;
+}
+	
+.memberJoin {
+	height: 30px;
+	width: 250px;
+	border-radius: 5px;
+}
+
+.dtbt {
+	background-color: transparent;
+	height: 30px;
+	width: 250px;
+	border-radius: 5px;
+	
+}
+
+
+#joinArea2{
+	position: fixed;
+	width:100%;
+	height:100%;
+	background-color:#999999AA;
+	opacity:0;
+	transition:opacity 0.3s ease-out;
+	}
+	
+#joinEmail {
+	background-color: white;
+	border-radius:5px;	
+}
+
+
+#joinEmail button {
+	width: 50px;
+}
+#joinArea3{
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width:100%;
+	height:100%;
+	background-color:#000000AA;
+	opacity:1;
+	transition:opacity 0.3s ease-out;
+	
+}
+

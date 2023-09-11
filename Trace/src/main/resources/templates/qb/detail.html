@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body th:fragment="qbDetail">
+	<div align="left" style="margin-bottom: 30px;">
+		<a href="qb.go" style="font-size: 25pt; font-weight: 800">Q&A</a>
+	</div>
+	<table th:each="qb : ${qbDetails}" id="qbDetailTable">
+		<tr>
+			<td><input name="no" th:value="qb.no" type="hidden"></td>
+		</tr>
+		<tr>
+			<td class="td1" rowspan="2"><img
+				th:src="${qb.qbWriter.icon1}"></td>
+			<td class="td2" th:text="${qb.qbWriter.nick1}"></td>
+			<td class="td3" align="right" th:text="${#dates.format(qb.date, 'yyyy-MM-dd HH:mm')}"></td>
+		</tr>
+		<tr th:each="qbc : ${qbcDetails}">
+			<td class="td4" colspan="2" align="right"><span id="span1"
+				class="material-symbols-outlined"> visibility </span><span
+				th:text="${qbc.view}"></span></td>
+		</tr>
+		<tr th:each="qb: ${qb}">
+			<td class="td5" colspan="3" align="right"><span
+				th:if="${session.loginMember != null and session.loginMember.id == qb.qbWriter.id1 or session.admin != null}">
+					<a th:href="@{qb.delete(no=${qb.no})}">삭제</a> <a
+					th:href="@{qb.update.go(no=${qb.no})}">수정</a>
+				</span>
+				<span>
+					<a th:if="${session.loginMember != null}" th:onclick="openWindowPop('QnAboard','[[${qb.no}]]');">신고</a>
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="td6" align="left" colspan="3">
+				<h2 th:text ="${qb.title}"></h2>	
+			</td>
+		</tr>
+		<tr>
+			<td class="td7" align="left" colspan="3"
+				th:utext="${qb.txt}"></td>
+		</tr>
+		<tr th:each="qbc : ${qbcDetails}">
+			<td class="td8" colspan="3" align="center"><button
+					id="likeCount" th:text="${qbc.like}"
+					th:onclick="updateLike([[${qb.no}]])"></button> <br> <br></td>
+		</tr>
+		<tr>
+			<td class="td9" align="center" colspan="3">
+				<form action="qb.reply.write" method="post"
+					onsubmit="return submitForm();">
+					<table>
+						<tr>
+							<td><input name="no" th:value="${qb.no}" id="qbrqrno2"
+								type="hidden"> <input name="qrno" id="qbrqrno"
+								type="hidden"></td>
+							<td th:if="${session.loginMember} != null"><input
+								name="qbrWriter" th:value="${session.loginMember.id}"
+								type="hidden"><input name="qbrrWriter"
+								th:value="${session.loginMember.id}" type="hidden"></td>
+						</tr>
+						<tr>
+							<td><input name="token" th:value="${token}" type="hidden">
+							</td>
+						</tr>
+						<tr>
+							<td class="editorTd" align="center">
+								<div id="toolbar">
+									<span class="ql-formats"> <select class="ql-font">
+											<option value="arial">Arial</option>
+											<option value="comic-sans">Comic Sans</option>
+											<option value="courier-new">Courier New</option>
+											<option value="georgia">Georgia</option>
+											<option value="helvetica">Helvetica</option>
+											<option value="lucida">Lucida</option>
+									</select> <select class="ql-header">
+											<option value="1">Heading</option>
+											<option value="2">Subheading</option>
+											<option value="3">Normal</option>
+									</select>
+									</span> <span class="ql-formats">
+										<button class="ql-bold"></button>
+										<button class="ql-italic"></button>
+										<button class="ql-underline"></button>
+										<button class="ql-strike"></button>
+									</span> <span class="ql-formats">
+										<button class="ql-list" value="ordered"></button>
+										<button class="ql-list" value="bullet"></button>
+									</span> <span class="ql-formats">
+										<button class="ql-script" value="super"></button>
+										<button class="ql-script" value="sub"></button>
+										<button class="ql-blockquote"></button>
+										<button class="ql-direction"></button>
+									</span> <span class="ql-formats"> <select class="ql-align"></select>
+										<select class="ql-color"></select> <select
+										class="ql-background"></select>
+									</span> <span class="ql-formats">
+										<button class="ql-code-block"></button>
+										<button class="ql-clean"></button>
+									</span>
+								</div>
+								<div id="editor1"></div>
+								<button class="button1" type="submit">작성</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td class="td10" colspan="3">답변
+				[[${qbrCount}]]</td>
+		</tr>
+		<tr>
+			<td colspan="3" align="center">
+				<table th:each="qbr : ${qb.qbReplys}" id="qbReply">
+					<tr>
+						<td><span th:text="${qbr.qbrWriter.nick1}"></span> <span class="span2"
+							th:text="${#dates.format(qbr.date, 'yyyy-MM-dd HH:mm')}"></span>
+						<td align="right"
+							th:if="${session.loginMember != null and session.loginMember.id == qbr.qbrWriter.id1 or session.admin != null}">
+							<button class="rDeleteBtn" th:onclick="deleteReply([[${qbr.qrno}]],[[${qb.no}]])">삭제</button>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" class="rTd1" th:utext="${qbr.txt}"></td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<table th:each="qbrr : ${qbr.qbReReplys}" id="qbReReply">
+								<tr>
+									<td>ㄴ<span th:text="${qbrr.qbrrWriter.nick1}"></span> <span class="span3"
+										th:text="${#dates.format(qbrr.date, 'yyyy-MM-dd HH:mm')}"></span>
+									</td>
+									<td align="right"
+										th:if="${session.loginMember != null and session.loginMember.id == qbrr.qbrrWriter.id1 or session.admin != null}">
+										<button class="rDeleteBtn" th:onclick="deleteReReply([[${qbrr.no}]],[[${qb.no}]])">삭제</button>
+									</td>
+								</tr>
+								<tr>
+									<td class="rTd2" th:utext="${qbrr.txt}"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input class="qbrno" th:value="${qbr.qrno}" type="hidden">
+							<button class="copyButton">댓글쓰기</button>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<script type="text/javascript" src="js/qb/replyQuill.js"></script>
+	<script type="text/javascript" src="js/qb/qbFunction.js"></script>
+</body>
+</html>

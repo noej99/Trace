@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="re">
+<head>
+<meta charset="UTF-8">
+<title>TRACE</title>
+<link rel="stylesheet" href="css/member/login.css">
+</head>
+<body>
+<form action="member.detail.go" method="post" >
+<div  id="loginArea2">
+<input type="hidden" name="id" th:value="${session.loginMember.id}">
+<div id="inputPW2" align="center">
+<input placeholder="비밀번호 입력" name="pw" type="password"><p>
+</div>
+<div align="center">
+<button style="width: 250px;">확인</button>
+</div>
+</div>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'sb';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.letterR {
+  color: rgb(47, 58, 142); /* Change this to the desired color for R */
+}
+
+.letterA {
+  color: rgb(254, 128, 109); /* Change this to the desired color for A */
+}
+
+* {
+	box-sizing: border-box;
+	border-spacing: 0px;
+}
+
+
+body::-webkit-scrollbar{
+	width: 0;
+	display: none;
+}
+
+body {
+	padding: 0px;
+	margin: 0px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+
+a:visited {
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+
+button {
+	cursor: pointer;
+	
+}
+
+#mainMenuTr * {
+	margin: 0;
+	padding: 0;
+	border-spacing: 0;
+}
+
+#titleArea {
+	background-color: white;
+	width: 100%;
+	min-width: 1920px;
+	height: 120px;
+	border-bottom: black solid 3px;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 99;
+}
+
+#titleArea .th1 {
+	padding-left: 50px;
+	width: 16%;
+}
+
+#titleArea .td2 {
+	width: 16%;
+}
+
+#titleArea .th1 a {
+	font-size: 35pt;
+	font-family: "sb";
+}
+
+#titleArea .th1 span {
+	font-size: 35pt;
+	font-family: "sb";
+}
+#menuLoiginTbl {
+	height: 100px;
+}
+
+#menuLoiginTbl tr:first-child {
+	height: 65px;
+}
+
+#menuLoiginTbl td {
+	padding: 0 5px;
+}
+
+#menuLoiginTbl tr:first-child td:first-child{
+	padding: 0;
+}
+#login {
+	width: 300px;
+}
+#img {
+	position: relative;
+	vertical-align: middle;
+}
+
+#menuArea td {
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#menuArea a {
+	font-family: "sb";
+	font-size: 17pt;
+}
+
+#contentArea {
+	margin-top: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1920px;
+}
+.contentAreaTdLeft{
+	width: 560px;
+	vertical-align: top;
+}
+
+.contentAreaTdLeft .banner{
+	position: relative;
+	top: 100px;
+	left: 130px;;
+	border: black solid 2px;
+	width: 240px;
+	height: 100px;
+	margin: 20px;
+	border-radius: 10px;
+	font-size: 0;
+}
+.bannerLink {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	font-size: 0;
+}
+.mvnrepository {
+	background-image: url("/css/mvn.png" );
+	background-size: 230px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.github {
+	background-image: url("/css/github.png" );
+	background-size: cover;
+}
+.apache {
+	background-image: url("/css/Apache.svg" );
+	background-size: 200px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.contentAreaTdMain{
+	width: 900px;
+}
+.contentAreaTdRight{
+	width: 560px;
+}
+
+#board {
+	border-spacing: 0;
+	text-align: center;
+	padding: 0px;
+}
+
+/*#board td {
+	margin: 50px;
+	padding: 50px;
+	border: black solid 1px;
+	width: 300px;
+	height: 200px;
+}*/
+
+#board table tr {
+	height: 32px;
+}
+
+#board table td {
+	border-bottom: lightgray solid 1px;
+}
+#board table tr:first-child td {
+	border-bottom: none;
+}
+
+#board table tr:nth-last-child(1) td {
+	border-bottom: black solid 1px;
+}
+
+.mainBoard th {
+	background-color: rgb(47, 58, 142);
+	border-bottom: black solid 1px;
+	margin: 0px;
+	color: white;
+}
+
+.mainBoard th:nth-child(1) {
+	width: 50%;
+}
+.mainBoard th:nth-child(2) {
+	width: 25%;
+}
+.mainBoard th:nth-child(3) {
+	width: 25%;
+}
+
+.mainBoard {
+	width: 400px;
+	margin: 20px;
+}
+
+.mainBoard h2 {
+	margin: 10px 0px;
+}
+.mainBoard tr td:nth-child(1) {
+	text-align: initial;
+}
+.mainBoard tr td:nth-child(1) a {
+	padding-left: 5px;
+	display: inline-block;
+	max-width: 190px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.mainBoard tr td:nth-child(2) {
+	text-align: center;
+	}
+.mainBoard tr td:nth-child(2) span {
+	display: inline-block;
+	width: 96px;
+	max-width: 96px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}

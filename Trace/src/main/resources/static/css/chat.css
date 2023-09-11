@@ -1,0 +1,70 @@
+@charset "UTF-8";
+#cbd {
+    overflow: hidden; /* 스크롤을 숨김 */
+  }
+
+.chatboard{
+	width:100%;
+}
+.myMsg {
+    background-color: #0074E4;
+    color: white;
+    font-size: 15pt;
+    font-weight: 800;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.yourMsg {
+    background-color: #ECECEC;
+    color: #0074E4;
+    font-size: 15pt;
+    font-weight: 800;
+    padding: 10px;
+    border-radius: 10px;
+    
+}
+#chatWrapper {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 150px); 
+    justify-content: space-between;
+    overflow: hidden; 
+    margin-top: 10px; 
+}
+
+
+#chatMessages {
+    overflow: scroll;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+    padding-bottom: 20%;
+}
+
+#chatMessages::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+#chatMessages::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0); 
+}
+
+#chatInput {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    position: fixed;
+    bottom: 0;
+    width: 50%;
+    height: 60px;
+    background-color: white;
+}
+#chatInput input{
+	height: 16pt;
+}
+
+#msg {
+    width: 70%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

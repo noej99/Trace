@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<title>TRACE</title>
+<link rel="stylesheet" href="css/board/report.css">
+</head>
+<body>
+	<script type="text/javascript" src="js/report.js"></script>
+	<div id="reportDiv">
+		<form id="reportForm" action="write.report">
+		<input type="hidden" name="rbno" th:value="${no}">
+		<input type="hidden" name="reporter" th:value="${session.loginMember.id}">
+			<input type="hidden" name="cate2" th:value="${cate2}"><br>
+			<select name="cate">
+				<option value="욕설/불건전한">욕설/불건전한</option>
+				<option value="사행성 광고 및 도배">사행성 광고 및 도배</option>
+				<option value="기타">기타</option>
+			</select>
+			<p>
+				<textarea placeholder="사유" name="reason"></textarea>
+				<button id="reportButton">신고</button>
+		</form>
+	</div>
+</body>
+</html>

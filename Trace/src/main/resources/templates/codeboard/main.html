@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>코드공유게시판</title>
+</head>
+<body th:fragment="codeBoard">
+	<table id="codeBoardTitleTbl">
+		<tr>
+			<td>
+				<h2 align="left"><a href="/codeboard.main.go">코드공유 게시판</a></h2>
+				<hr>
+			</td>
+		</tr>
+	</table>
+	<table id="codeBoardArea">
+		<tr class="codeBoardAreaCate">
+			<th class="codeBoardAreaNo">번호</th>
+			<th class="codeBoardAreaTitle">제목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+		</tr>
+		<tr class="drPost" th:if="${cateNotice} != null" th:each="cn : ${cateNotice}" align="center">
+			<td th:text="공지"></td>
+			<td align="left"> <a th:href="@{notice.get.detail(no=${cn.no})}" th:text="${cn.title}"></a> </td>
+			<td><img class="cbWriterImg" th:src="${cn.writer.icon1}" th:text="${cn.writer.nick1}"></td>
+			<td th:text="${#dates.format(cn.date, 'yyyy-MM-dd')}"></td>
+		</tr>
+        <tr th:each="cb : ${codeBoards}" class="tdCodeBoards">
+            <td th:text="${cb.no}" align="center"></td>
+			<td class="cbTitleTd" align="left">
+			    <a th:text="${#strings.length(cb.title) > 20 ? #strings.substring(cb.title, 0, 20) + ' ...' : cb.title}" th:href="@{codeboard.get.detail(no=${cb.no})}"></a>
+			</td>
+            <td align="center" class="writerTd">
+                <img class="cbWriterImg" th:if="${cb.writer != null}" th:src="${cb.writer.icon1}">
+                <span class="cbWriterSpan" th:if="${cb.writer != null}" th:text="${cb.writer.nick1}"></span>
+            </td>
+            <td class="dateTd" th:text="${#dates.format(cb.date, 'yyyy-MM-dd')}" align="center"></td>
+        </tr>
+        <tr th:if="${codeBoards.isEmpty() && keyword != null}" align="center">
+            <td colspan="4">검색 결과가 없습니다.</td>
+        </tr>
+	</table>
+	<br>
+	<a id="codeBoardWriteGoBtn" href="/codeboard.write.go">글쓰기</a>
+	<a id="codeBoardMainGoBtn" href="/codeboard.main.go">목록</a>
+	<div th:if="${keyword == null}" class="cbPageNumber">
+		<a th:if="${start > 1}" th:href="@{/codeboard.main.go(page=${start - 1})}">이전</a>
+		<a th:each="pageNumber : ${#numbers.sequence(start, end)}" 
+		   th:href="@{/codeboard.main.go(page=${pageNumber})}" 
+		   th:class="${pageNumber == currentPage ? 'active' : ''}">
+		   <span th:text="${pageNumber != null ? pageNumber : 0}"></span>
+		</a>
+		<a th:if="${end < pageCount}" th:href="@{/codeboard.main.go(page=${end + 1})}">다음</a>
+	</div>
+	<div th:unless="${keyword == null}" class="cbPageNumber">
+		<a th:if="${start > 1}" th:href="@{/codeboard.search(page=${start - 1}, category=${category},keyword=${keyword})}">이전</a>
+		<a th:each="pageNumber : ${#numbers.sequence(start, end)}" 
+			th:href="@{/codeboard.search(page=${pageNumber}, category=${category},keyword=${keyword})}" 
+			th:class="${pageNumber == currentPage ? 'active' : ''}">
+		<span th:text="${pageNumber}"></span>
+		</a>
+		 <a th:if="${end < pageCount}" th:href="@{/codeboard.search(page=${end + 1}, category=${category},keyword=${keyword})}">다음</a>
+	</div>
+	<br>
+	<form action="/codeboard.search" method="get" class="cbSearchBar">
+		<select name="category" class="cbCategory">
+			<option value="title">제목</option>
+		</select>
+		<input name="keyword" class="cbCategorySearch">
+		<button class="cbCategorySearchBtn">검색</button>
+	</form>
+</body>
+</html>

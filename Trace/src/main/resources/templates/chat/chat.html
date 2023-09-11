@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="chatItem">
+<head>
+<meta charset="UTF-8">
+<link  rel="stylesheet" href="css/chat.css">
+
+<script type="text/javascript" src="http://195.168.9.95:1234/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="js/chat.js"></script>
+<title>Insert title here</title>
+</head>
+<body id="cbd">
+<div id="loginPage">
+</div>
+<div id="chatPage">
+    <div id="chatWrapper">
+        <div id="chatMessages">
+            <table class="chatboard"></table>
+        </div>
+        
+        <div id="chatInput">
+            <input autofocus="autofocus" id="msg" placeholder="메세지 입력">
+        </div>
+    </div>
+</div>
+</body>
+</html>

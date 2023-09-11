@@ -1,0 +1,186 @@
+@charset "UTF-8";
+
+#drvTbl {
+	width: 800px;
+	color: #333;
+	margin: 0 0 100px 0;
+	padding: 0;
+}
+
+#drvTbl button {
+	padding: 0;
+	margin: 0;
+}
+
+#drViewMain {
+	max-width: 800px;
+	min-height: 100px;
+	padding: 10px 5px;
+}
+
+#drViewMain * {
+	max-width: 100%;
+}
+
+#drViewMainTr td {
+	border-bottom: #333 solid 1px;
+}
+
+.drViewContent {
+	height: 40px;
+}
+
+.drViewContent td {
+	padding: 5px;
+	border-bottom: #ccc dotted 1px;
+}
+
+.drViewContent * {
+	font-size: 10pt;
+}
+
+#drViewBtnRow {
+	text-align: center;
+}
+
+#drViewBtnRow td {
+	border-bottom: #333 solid 1px;
+}
+
+#drViewBtnRow td:nth-child(2) button:nth-of-type(1) {
+	margin-right: 5px;
+}
+#drViewBtnRow td:nth-child(2) button:nth-of-type(2) {
+	margin-left: 5px;
+}
+
+#drViewHeader {
+	padding: 5px;
+	border-bottom: #333 solid 2px;
+	font-size: 18pt;
+}
+
+#drViewHeader a {
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+}
+
+#drViewHeader a:visited {
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+}
+
+.drViewFile td {
+	border-bottom: none;
+}
+
+.drViewFile + .drLine>td {
+	border-top: #333 solid 1px;
+}
+
+#drViewFileBtn {
+	text-align: center;
+}
+
+#drViewFileBtn a {
+	text-decoration: none;
+	color: #00f;
+}
+
+#drvTbl .drViewContent:nth-child(2) td:nth-child(1) {
+	width: 7%;
+	text-align: center;
+}
+
+#drvTbl .drViewContent:nth-child(2) td:nth-child(2) {
+	width: 45%;
+	word-break: break-all;
+	padding: 5px;
+}
+
+#drvTbl .drViewContent:nth-child(2) td:nth-child(3) {
+	width: 5%;
+	text-align: center;
+}
+
+#drvTbl .drViewContent:nth-child(2) td:nth-child(4) {
+	width: 15%;
+	text-align: center;
+}
+
+#drvTbl .drViewContent:nth-child(2) td:nth-child(5) {
+	width: 14%;
+	text-align: center;
+}
+
+#drvTbl .drViewContent:nth-child(2) td:nth-child(6) {
+	width: 7%;
+	text-align: center;
+}
+
+#drvTbl .drViewContent:nth-child(2) td:nth-child(7) {
+	width: 7%;
+	text-align: center;
+}
+
+.drvReplyTbl {
+	width: 100%;
+	color: #333;
+	font-size: 10pt;
+}
+
+.drvReplyTbl button {
+	font-size: 10pt;
+}
+
+.drvReplyTbl td {
+	padding: 5px;
+}
+
+.drvReplyTbl tr td {
+	width: 5%;
+}
+
+.drReply {
+	text-align: center;
+}
+
+.drReply td:nth-child(2) {
+	text-align: initial;
+}
+
+.drReReply {
+	text-align: center;
+}
+
+.drReReply td:nth-child(3) {
+	text-align: initial;
+}
+
+.drReply td,
+.drReReply td {
+	border-bottom: #ccc dotted 1px;
+}
+
+#drrrrr td {
+	padding: 0;
+	font-size: 0;
+}
+
+.drReReplyWirte input {
+	border: #ccc solid 1px;
+	height: 19px;
+	border-radius: 3px;
+}
+
+#drReplyWrite input {
+	border: #ccc solid 1px;
+	height: 19px;
+	border-radius: 3px;
+}
+
+#drReplyWrite td {
+	height: 40px;
+}

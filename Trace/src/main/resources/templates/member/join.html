@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>TRACE</title>
+<script type="text/javascript" src="js/joinck.js"></script>
+<script type="text/javascript" src="js/joinckh.js"></script>
+<script type="text/javascript" src="js/jQuery.js"></script>
+<script type="text/javascript" src="js/tracejQuery.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<link rel="stylesheet" href="css/member/join.css">
+</head>
+
+<body>
+	<table id="jointitleArea">
+		<tr>
+			 <th class="th1" align="center">
+		      <a href="/" style="user-select: none;">
+		        T<span class="letterR">R</span><span class="letterA">A</span>CE</a>
+		    </th>
+		</tr>
+		<tr>
+			<th></th>
+		</tr>
+	</table>
+	<form action="member.join" method="post" enctype="multipart/form-data"
+		th:onsubmit="return memberjoinck(this);">
+		<table id="joinTbl"
+			style="margin-top: 250px; margin-left: auto; margin-right: auto;">
+			<tr align="center">
+				<td style="width: 70px;"></td>
+				<td style="width: 260px;"><input th:onclick="joinEmail();" id="email"
+					class="memberJoin" name="email" placeholder="Email"
+					readonly="readonly">
+				</td>
+				<td style="width: 70px;"></td>
+			</tr>
+
+			<tr align="center">
+				<td style="width: 70px;"></td>
+				<td><input class="memberJoin" type="password" name="pw1"
+					placeholder="PW(8~16자)" maxlength="16"></td>
+				<td style="width: 70px;"></td>
+			</tr>
+			<tr align="center">
+				<td style="width: 70px;"></td>
+				<td><input class="memberJoin" type="password" name="pwck"
+					placeholder="PW재확인" maxlength="16"></td>
+				<td style="width: 70px;"></td>
+			</tr>
+			<tr align="center">
+				<td style="width: 70px;"></td>
+				<td><input class="memberJoin" name="name" placeholder="이름"></td>
+				<td style="width: 70px;"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input id="memberjoinNick" class="memberJoin" name="nick" placeholder="닉네임 중복불가"></td>
+				<td><input id="duplicateCheckButton" type="button" value="중복확인"></td>
+			</tr>
+			
+			<tr align="center">
+				<td style="width: 70px;"></td>
+				<td><input class="memberJoin" name="birth1" type="date"
+					max="2023-09-08">
+				</td>
+			</tr>
+			<tr align="center">
+				<td style="width: 70px;"></td>
+				<td><input class="memberJoin" id="addr1" name="addr1"
+					placeholder="우편번호" maxlength="5"></td>
+				<td style="width: 70px;"></td>
+			</tr>
+			<tr align="center">
+				<td style="width: 70px;"></td>
+				<td><input class="memberJoin" id="addr2" name="addr2"
+					placeholder="주소"></td>
+				<td style="width: 70px;"></td>
+			</tr>
+			<tr align="center">
+				<td style="width: 70px;"></td>
+				<td>
+					<input class="memberJoin" name="addr3" placeholder="상세주소">
+				</td>
+				<td style="width: 70px;"></td>
+			</tr>
+			<tr align="center">
+			<td style="width: 70px;"></td>
+			<td><select name="icon" class="memberJoin">
+			<option value="icon/dog.jpg">강아지</option>
+			<option value="icon/cat.jpg">고양이</option>
+			<option value="icon/panda.jpg">판다</option>
+			<option value="icon/logo.png">보노</option>
+			<option value="icon/bonobono.png">보노보노</option>
+			<option value="icon/doge.png">도지</option>
+			<option value="icon/goat1.jpg">고트</option>
+			<option value="icon/goat3.jpg">곹</option>
+			<option value="icon/pika.png">돈가스</option>
+			</select></td>
+			<td style="width: 70px;"></td>
+
+				<td><input name="point" value=30 type="hidden"></td>
+				<td><input name=leave1 value="0" type="hidden"></td>
+
+			</tr>
+			<tr>
+			<td style="width: 70px;"></td>
+				<td align="center"><button id="signupButton" disabled>가입</button></td>
+				<td style="width: 70px;"></td>
+			</tr>
+
+
+
+		</table>
+	</form>
+
+	<table id="joinArea2">
+		<tr>
+			<td align="center">
+				<table id="joinEmail">
+					<tr>
+						<td id="x" align="right" colspan="2">X</td>
+					</tr>
+					<tr>
+						<td><input id="username" class="memberJoin" name="email"
+							placeholder="Email"></td>
+						<td>
+						<select class="memberJoin" aria-label="Default select example" id="freefix">
+                <option selected>이메일 선택</option>
+                <option value="@naver.com">@naver.com</option>
+                <option value="@daum.net">@daum.net</option>
+                <option value="@gmail.com">@gmail.com</option>
+                <option value="@hamail.com">@hamail.com</option>
+                <option value="@yahoo.com">@yahoo.com</option>
+						</select>
+						
+						</td>
+						<td align="right"><button id="mailCheckbtn">전송</button></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><input id="mail-check-input" class="memberJoin" name="code"
+							placeholder="인증번호를 입력해주세요" disabled="disabled">
+							
+					</tr>
+							<tr  align="center"><td colspan="2"><button  id="checkVerify-btn" >확인</button></td></tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<script>
+
+!function() {
+
+  function detectDevTool(allow) {
+
+    if(isNaN(+allow)) allow = 100;
+
+    var start = +new Date(); 
+
+    debugger;
+
+    var end = +new Date(); 
+
+    if(isNaN(start) || isNaN(end) || end - start > allow) {
+
+      // 개발자 도구가 open 된것을 감지했을때 실행할 코드 삽입
+
+    }
+
+  }
+
+  if(window.attachEvent) {
+
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+
+        detectDevTool();
+
+      window.attachEvent('onresize', detectDevTool);
+
+      window.attachEvent('onmousemove', detectDevTool);
+
+      window.attachEvent('onfocus', detectDevTool);
+
+      window.attachEvent('onblur', detectDevTool);
+
+    } else {
+
+        setTimeout(argument.callee, 0);
+
+    }
+
+  } else {
+
+    window.addEventListener('load', detectDevTool);
+
+    window.addEventListener('resize', detectDevTool);
+
+    window.addEventListener('mousemove', detectDevTool);
+
+    window.addEventListener('focus', detectDevTool);
+
+    window.addEventListener('blur', detectDevTool);
+
+  }
+
+}();
+
+</script>
+
+
+</body>
+</html>

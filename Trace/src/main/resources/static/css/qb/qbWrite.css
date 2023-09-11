@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+#editor {
+  width: 900px;
+  margin: 0 auto;
+  min-height: 400px;
+}
+
+#editor1 {
+	width: 800px;
+	margin: 0 auto;
+	min-height: 200px;
+}
+
+#qbWriteTitle {
+	width: 900px;
+	height: 30px;
+	border: rgb(204, 204, 204) solid 1px;
+	padding-left: 10px;
+}
+
+#qbWrite {
+	margin-bottom: 70px;
+}
+
+#qbWrite .wTd1 input{
+	width: 900px;
+	height: 40px;
+}
+
+#qbWrite .wBtn {
+	padding: 10px;
+	background-color: transparent;
+	border: none;
+	font-size: 12pt;
+	margin-top: 10px;
+}
+
+#qbCategory {
+	width: 100px;
+	height: 25px;
+}
+
+#qbWrite .uA {
+	padding-right: 5px;
+}

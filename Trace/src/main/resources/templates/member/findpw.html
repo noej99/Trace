@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>TRACE</title>
+<script type="text/javascript" src="js/joinck.js"></script>
+<script type="text/javascript" src="js/joinckh.js"></script>
+<script type="text/javascript" src="js/jQuery.js"></script>
+<script type="text/javascript" src="js/tracejQuery.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<link rel="stylesheet" href="css/member/join.css">
+<link rel="stylesheet" href="css/member/login.css">
+</head>
+
+<body>
+	<table id="jointitleArea">
+		<tr><th>
+		<a href="/" style="user-select: none;">
+		T<span class="letterR">R</span><span class="letterA">A</span>CE</a></th>
+		</tr>
+		<tr>
+			<th></th>
+		</tr>
+	</table>
+	<form action="member.findedpw" method="post" enctype="multipart/form-data">
+		<table id="joinTbl"
+			style="margin-top: 250px; margin-left: auto; margin-right: auto;">
+			<tr align="center">
+				<td><input th:onclick="joinEmail();" id="email"
+					class="memberJoin" name="email" placeholder="Email"
+					readonly="readonly">
+				<td>
+			</tr>
+
+			<tr align="center">
+				<td><input class="memberJoin" type="password" name="pw1"
+					placeholder="새비밀번호(8 ~ 16자)" maxlength="16"></td>
+			</tr>
+			<tr align="center">
+				<td><input class="memberJoin" type="password" name="pwck"
+					placeholder="새비밀번호 재입력" maxlength="16"></td>
+			</tr>
+			<tr>
+				<td align="center"><button id="signupButton">확인</button></td>
+			</tr>
+		</table>
+	</form>
+<table id="joinArea2">
+		<tr>
+			<td align="center">
+				<table id="joinEmail">
+					<tr>
+						<td id="x" align="right" colspan="2">X</td>
+					</tr>
+					<tr>
+						<td><input id="username" class="memberJoin" name="email"
+							placeholder="Email"></td>
+						<td>
+						<select class="memberJoin" aria-label="Default select example" id="freefix">
+                <option selected>이메일 선택</option>
+                <option value="@naver.com">@naver.com</option>
+                <option value="@daum.net">@daum.net</option>
+                <option value="@gmail.com">@gmail.com</option>
+                <option value="@hamail.com">@hamail.com</option>
+                <option value="@yahoo.com">@yahoo.com</option>
+						</select>
+						
+						</td>
+						<td align="right"><button id="mailCheckbtn">전송</button></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><input id="mail-check-input" class="memberJoin" name="code"
+							placeholder="인증번호를 입력해주세요" disabled="disabled">
+							
+					</tr>
+							<tr  align="center"><td colspan="2"><button id="checkVerify-btn" >확인</button></td></tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+	
+
+</body>
+</html>

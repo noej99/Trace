@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="writeForm" th:fragment="modifyForm">
+		<link rel="stylesheet" href="css/dataroom/dataroom.css">
+		<link rel="stylesheet" href="css/dataroom/dataroomView.css">
+		<link rel="stylesheet" href="css/dataroom/dataroomWrite.css">
+		<form action="dataroom.update" method="post" onsubmit="return dataroomWriteCheck(this);">
+			<input id="drWriteFormTitle" name="title" th:value="${mod.title}" placeholder="제목을 입력해주세요">
+			<textarea id="summernote" name="content" th:value="${mod.content}"></textarea>
+			<button id="drWriteFormBtn">수정</button>
+			<input name="modNo" th:value="${mod.no}" hidden="hidden">
+			<input name="token" th:value="${token}" hidden="hidden">
+		</form>
+	</div>
+</body>
+</html>

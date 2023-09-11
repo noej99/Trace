@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script type="text/javascript">
+	function go_write() {
+		location.href = "freeboard.go.write";
+	}
+</script>
+
+<link rel="stylesheet" href="css/board/freeboard.css">
+<body>
+	<table id="writeFreeBoardTbl">
+		<tr>
+			<td id="FreeBoardTitle">자유게시판</td>
+		</tr>
+		<tr>
+			<td align="right">
+				<button class="postFBBtn" th:onclick="go_write();">글 작성</button>
+			</td>
+		</tr>
+	</table>
+	<table id="freeboardframe" th:fragment= "freeboardList">
+		<tr>
+			<td>
+				<table id="mainTbl">
+					<tr>
+						<td class="freeboardProperty_nwd">글번호</td>
+						<td class="freeboardProperty_contents">내용</td>
+						<td class="freeboardProperty_nwd" colspan="2">작성자</td>
+						<td class="freeboardProperty">작성일자</td>
+						<td class="freeboardProperty_nwd">조회수</td>
+					</tr> <!-- 공지사항 -->
+					<tr th:each="cn: ${cateNotice}" style="background-color: #1EDDFF;">
+						<th align="center">공지</th>
+						<th align="center" style="max-width: 45%;"><a th:href="@{notice.get.detail(no=${cn.no})}" th:utext="${cn.title}" ></a></th>
+						<th align="right"><img th:src="${cn.writer.icon1}" style="width: 50px; height: 50px;"></th>
+						<th th:text=${cn.writer.nick1}  style="font-weight: bold; font-size: 16px;" align="left"></th>
+						<th th:text="${#dates.format(cn.date, 'yyyy.MM.dd.HH:mm')}"align="center"></th>
+						<th th:each="cnt : ${counts}" th:if="${cn.no==cnt.no}" th:text="${cnt.view}" align="center"></th>
+						
+					</tr><!-- 자유게시판 글 -->
+					<tr th:each="p : ${posts}" style="border-collapse: collapse;">
+						<td th:text="${p.no}" align="center"></td>
+						<td align="center" style="max-width: 40%;"><a th:href="@{freeboard.post(no=${p.no})}" th:utext="${p.contents}" ></a></td>
+						<td align="right" class="freeboardProperty_writer"><img th:src="${p.writer.icon1}" style="width: 50px; height: 50px;"></td>
+						<td th:text=${p.writer.nick1}  style="font-weight: bold; font-size: auto;" align="left"></td>
+						<td th:text="${#dates.format(p.date, 'yyyy.MM.dd.HH:mm')}"align="center"></td>
+							<td th:text="${p.view}"  align="center"></td>
+					</tr>
+					<tr>
+						<td align="left" colspan="3">
+							<a th:href="@{freeboard?(page=${previousPageNum}, search=${search})}" id="preNextBtn">이전 페이지</a>
+						</td>
+						<td align="right" colspan="3" th:if= "${nextPageNum != 'NoPage'}" >
+							<a th:href="@{freeboard?(page=${nextPageNum}, search=${search})}" id="preNextBtn" >다음 페이지</a>
+						</td>
+					</tr>
+					<tr>
+					<form action="freeboard" th:onsubmit="return freeboard(this);">
+						<td align="center" class="searchFBTd" colspan="6">
+							<!-- 유효성 검사 필요 --> <input placeholder="검색어 입력" name="search" style="height: 18px;">
+							<button id="seachBtn" class="Btn" >검색</button>
+						</td>
+						</form>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

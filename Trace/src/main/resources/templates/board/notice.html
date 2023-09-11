@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>공지사항</title>
+</head>
+<body th:fragment="noticeBoard">
+	<table id="noticeTbl">
+		<tr>
+			<th style="width: 5%;">번호</th>
+			<th>제목</th>
+			<th style="width: 25%;">글쓴이</th>
+			<th style="width: 20%;">등록일</th>
+		</tr>
+		<tr th:each="n : ${notices}">
+			<td th:text="${n.no}" align="center"></td>
+			<td class="titleTd" align="center">
+				<a th:text="${n.title}" th:href="@{notice.get.detail(no=${n.no})}"></a>
+			</td>
+			<td align="center" class="writerTd">
+				<img class="writerImg" th:src="${n.writer.icon1}">
+				<span class="writerSpan" th:text="${n.writer.nick1}"></span>
+			</td>
+			<td class="dateTd" th:text="${#dates.format(n.date, 'yyyy-MM-dd HH:mm')}" align="center"></td>
+	</table>
+	<br>
+	<button th:if="${session.admin!=null}" onclick="location.href='/notice.write.go'">글쓰기</button>
+	<div id="resultArea">[[${result}]]</div>
+</body>
+</html>

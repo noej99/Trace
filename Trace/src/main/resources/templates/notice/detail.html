@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>[[${details.title}]]</title>
+</head>
+<body th:fragment="noticeDetail">
+	<div id="detailDiv" th:each="d : ${details}">
+		<div class="noticeHeader">
+			<a th:if="${d.category == 'notice'}" th:href="@{/notice}">공지사항</a>
+			<a th:if="${d.category == 'droom'}" th:href="@{/dataroom}">자료실</a>
+			<a th:if="${d.category == 'qna'}" th:href="@{/qb.go}">Q&A게시판</a>
+			<a th:if="${d.category == 'code'}" th:href="@{/codeboard.main.go}">코드공유 게시판</a>
+			<a th:if="${d.category == 'free'}" th:href="@{/freeboard}">자유게시판</a>
+		</div>
+		<div th:if="${session.admin!=null}" style="float: right;">
+			<a class="detailWork" th:href="@{notice.update.go(no=${d.no})}">수정</a>
+			<a class="detailWork" th:href="@{notice.delete(no=${d.no})}">삭제</a>
+		</div>
+		<br><br>
+		
+		<div style="height: 40px; border-bottom: 2px solid black; padding-left: 7px; padding-right: 7px; width: 800px;">
+			<div class="detailWriterInfo">
+				<img class="writerImg" th:src="${d.writer.icon1}" alt="">
+				<span class="detailWriter" th:text="${d.writer.nick1}"></span>
+			</div>
+			
+			<div class="detailDate" style="display: inline-block;">
+				<span th:text="${#dates.format(d.date, 'yyyy-MM-dd HH:mm')}"></span>
+			</div>
+			
+			<div class="detailHit" th:each="count : ${count}">
+				<span th:text="'조회수: ' + ${count.view}" style="padding-right: 10px;"></span>
+				<span th:text="'추천수: ' + ${count.like}"></span>
+			</div>
+		</div>
+		<br><br>
+		
+		<div class="detailTitle">
+			<h1 th:text="${d.title}" style="margin-top: 0px;"></h1>
+		</div>
+		<br>
+		
+		<div class="detailContent" th:utext="${d.contents}"></div>
+
+		<button th:each="c : ${count}" class="likeBtn" th:text="${c.like}" th:onclick="updateNoticeLike([[${d.no}]]);">
+		</button>
+
+	</div>
+	<script type="text/javascript" src="js/notice.js"></script>
+</body>
+</html>

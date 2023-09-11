@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>TRACE</title>
+</head>
+<body>
+<table th:fragment="memberdetail">
+<tr><td >
+
+		<table id="joinTbl">
+	<form action="member.detail.update" method="post" enctype="multipart/form-data" th:onsubmit="return memberupdateck(this);">
+			<tr align="center" th:each="m:${session.loginMember}">
+			<td ></td>
+				<td colspan="2"><input  class="memberJoin" id="memberJoinID" name="id" th:value="${m.id}" placeholder="Email"
+					maxlength="25" readonly="readonly">
+				</td>
+				<td></td>
+			</tr>
+			<tr align="center">
+			<td ></td>
+				<td colspan="2">
+					<input class="memberJoin" type="password" name="pw1" placeholder="PW8자이상" maxlength="12">
+				</td>
+			<td ></td>
+			</tr>
+			<tr align="center">
+			<td></td>
+				<td colspan="2"><input class="memberJoin" type="password" name="pwck" placeholder="PW재확인" maxlength="12"></td>
+			</tr>
+			<td></td>
+			<tr align="center" th:each="m:${session.loginMember}">
+			<td></td>
+				<td colspan="2"><input class="memberJoin" name="name" th:value="${m.name}"  placeholder="이름"></td>
+			<td></td>
+			</tr>
+			<tr th:each="m:${session.loginMember}">
+				<td></td>
+				<td  colspan="2" align="center">
+					<input style="margin-left: 70px;" id="memberjoinNick" name="nick" class="memberJoin"  th:value="${m.nick}"  placeholder="닉네임">
+					<input  id="duplicateCheckButton"type="button" value="중복확인">
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr th:each="m:${session.loginMember}" align="center">
+				<td colspan="4" >[[${birth1}]]년[[${birth2}]]월[[${birth3}]]일</h1>
+				</td>
+			</tr>
+			<tr align="center" th:each="m:${session.loginMember}">
+			<td></td>
+				<td colspan="2">
+					<input class="memberJoin" id="addr1" th:value="${addr1}" name="addr1" placeholder="우편번호" maxlength="5"><br>
+					<input class="memberJoin" id="addr2" th:value="${addr2}" name="addr2" placeholder="주소"> <br>
+					<input class="memberJoin" name="addr3" th:value="${addr3}"  placeholder="상세주소">
+				</td>
+			<td></td>
+			</tr>
+			
+			<tr align="center" th:each="m:${session.loginMember}">
+			<td></td>
+			<td colspan="2">포인트:[[${m.point}]]</td>
+			<td></td>
+			</tr>
+			<tr align="center" th:each="m:${session.loginMember}">
+			
+				<td><input name="icon1" th:value="${m.icon}" type="hidden"></td>
+				<td><input name=leave1 value="0" type="hidden"></td>
+				
+			</tr>
+			<tr>
+			
+				<td colspan="4"><button id="signupButton" disabled>수정</button>
+	</form>
+	<button id="signupButton2" onclick="return memberbye();">탈퇴</button></td>
+			</tr>
+		</table>
+</td> </tr>
+</table>
+
+</body>
+</html>

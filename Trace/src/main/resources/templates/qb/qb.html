@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>TRACE</title>
+</head>
+<body th:fragment="qaBoard">
+	<table>
+		<tr>
+			<td style=" padding: 20px; border: black solid 2px; border-radius: 15px">
+				<table>
+					<tr>
+						<th align="left">
+							<h2>Q&A</h2>
+						</th>
+					</tr>
+					<tr>
+						<td>좋은 질문과 답변으로 동료들의 시간을 아껴주세요.</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<br>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<form action="qb.search" method="get">
+					<table id="qbSearch">
+						<tr>
+							<td style="width: 10%;"></td>
+							<td align="center" class="td1"><input id="search"
+								name="search" placeholder="제목"> <input name="cate"
+								th:value="${qbCate}" type="hidden">
+								<button>검색</button></td>
+							<td align="right" style="padding-right: 5px;"><a th:if="${session.loginMember!=null}"
+								href="qb.write.go">글쓰기</a></td>
+						</tr>
+						<tr>
+							<td class="cateTd" align="center" colspan="3">
+								<div th:if="${qbKey} == null">
+									<a th:href="@{/qb.search(page=1, cate=Java)}">Java</a> <a
+										th:href="@{/qb.search(page=1, cate=JavaScript)}">JavaScript</a>
+									<a th:href="@{/qb.search(page=1, cate=Python)}">Python</a>
+									<a th:href="@{/qb.search(page=1, cate=SQL)}">SQL</a> <a
+										th:href="@{/qb.search(page=1, cate=etc)}">기타</a>
+								</div>
+								<div th:unless="${qbKey} == null">
+									<a
+										th:href="@{/qb.search(page=1, cate=Java, search=${qbKey})}">Java</a>
+									<a
+										th:href="@{/qb.search(page=1, cate=JavaScript, search=${qbKey})}">JavaScript</a>
+									<a
+										th:href="@{/qb.search(page=1, cate=Python, search=${qbKey})}">Python</a>
+									<a
+										th:href="@{/qb.search(page=1, cate=SQL, search=${qbKey})}">SQL</a>
+									<a
+										th:href="@{/qb.search(page=1, cate=etc, search=${qbKey})}">기타</a>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</form>
+				<table id="qbNotice" th:if="${cateNotice} != null" th:each="cn : ${cateNotice}">
+					<tr>
+						<td rowspan="2" class="imgTd"><img th:src="${cn.writer.icon1}"></td>
+						<td>
+							<span class="writer" th:text="${cn.writer.nick1}"></span>
+							<span class="qbDate" th:text="${#dates.format(cn.date, 'yyyy-MM-dd HH:mm')}"></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="qbTitle">[&nbsp;공지&nbsp;]&nbsp;
+							<a th:href="@{notice.get.detail(no=${cn.no})}" th:text="${cn.title}"></a></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="qbView" th:if="${cn.no == cnt.no}" align="right" th:each="cnt : ${counts}">
+							<span class="material-symbols-outlined"> thumb_up </span>
+							<span th:text="${cnt.like}"></span>
+							<span class="material-symbols-outlined"> visibility </span>
+							<span th:text="${cnt.view}"></span>
+						</td>
+						
+						
+					</tr>
+				</table>
+				<table th:each="qb: ${qb}" id="qbContent">
+					<tr>
+						<td rowspan="2" class="imgTd"><img
+							th:src="${qb.qbWriter.icon1}"></td>
+						<td><span class="qbWriter" th:text="${qb.qbWriter.nick1}"></span>
+							<span class="qbDate"
+							th:text="${#dates.format(qb.date, 'yyyy-MM-dd HH:mm')}"></span></td>
+					</tr>
+					<tr>
+						<td class="qbTitle">[&nbsp;<span th:text="${qb.cate}"></span>&nbsp;]&nbsp;&nbsp;<a
+							th:text="${qb.title}" th:href="@{qb.detail(no=${qb.no})}"></a></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="qbView" align="right"
+							th:if="${qbc.no} == ${qb.no}" th:each="qbc : ${qbc}"><span
+							class="material-symbols-outlined"> thumb_up </span> <span
+							th:text="${qbc.like}"></span> <span
+							class="material-symbols-outlined"> visibility </span> <span
+							th:text="${qbc.view}"></span></td>
+					</tr>
+				</table>
+				<table id="qbPageTable">
+					<tr>
+						<td th:if="${qbKey == null}">
+							<div th:if="${qbCate == null}">
+								<a class="qbFirstBtn" th:href="@{/qb.go(page=1)}">&laquo;</a> <a
+									class="qbPageBtn" th:href="@{/qb.go(page=${qbStartPage - 1})}"
+									th:unless="${qbIsFirst}">&lt;</a> <a th:if="${qbIsFirst}">&nbsp;&nbsp;&nbsp;</a><a
+									th:id="${qbPageNumber == p ? 'qbPageNumber' : ''}"
+									class="qbPageA" th:each="p : ${pSize}"
+									th:href="@{/qb.go(page=${p})}">[[${p}]]</a> <a
+									class="qbPageBtn" th:if="${qbEndPage != qbLast}" th:href="@{/qb.go(page=${qbEndPage + 1})}"
+									th:unless="${qbIsLast}">&gt;</a> <a th:if="${qbIsLast or qbEndPage == qbLast}">&nbsp;&nbsp;&nbsp;</a>
+								<a class="qbLastBtn" th:href="@{/qb.go(page=${qbLast})}">&raquo;</a>
+							</div>
+							<div th:unless="${qbCate == null}">
+								<a class="qbFirstBtn"
+									th:href="@{/qb.search(page=1, cate=${qbCate})}">&laquo;</a>
+								<a class="qbPageBtn"
+									th:href="@{/qb.search(page=${qbStartPage - 1}, cate=${qbCate})}"
+									th:unless="${qbIsFirst}">&lt;</a> <a th:if="${qbIsFirst}">&nbsp;&nbsp;&nbsp;</a><a
+									th:id="${qbPageNumber == p ? 'qbPageNumber' : ''}"
+									class="qbPageA" th:each="p : ${pSize}"
+									th:href="@{/qb.search(page=${p}, cate= ${qbCate})}">[[${p}]]</a>
+								<a class="qbPageBtn"  th:if="${qbEndPage != qbLast}"
+									th:href="@{/qb.search(page=${qbEndPage + 1}, cate=${qbCate})}"
+									th:unless="${qbIsLast}">&gt;</a> <a th:if="${qbIsLast or qbEndPage == qbLast}">&nbsp;&nbsp;&nbsp;</a>
+								<a class="qbLastBtn"
+									th:href="@{/qb.search(page=${qbLast}, cate=${qbCate})}">&raquo;</a>
+							</div>
+						</td>
+						<td th:unless="${qbKey == null}">
+							<div th:if="${qbCate == null}">
+								<a class="qbFirstBtn"
+									th:href="@{/qb.search(page=1, search=${qbKey})}">&laquo;</a> <a
+									class="qbPageBtn"
+									th:href="@{/qb.search(page=${qbStartPage - 1}, search=${qbKey})}"
+									th:unless="${qbIsFirst}">&lt;</a> <a th:if="${qbIsFirst}">&nbsp;&nbsp;&nbsp;</a><a
+									th:id="${qbPageNumber == p ? 'qbPageNumber' : ''}"
+									class="qbPageA" th:each="p : ${pSize}"
+									th:href="@{/qb.search(page=${p}, search=${qbKey})}">[[${p}]]</a>
+								<a class="qbPageBtn" th:if="${qbEndPage != qbLast}"
+									th:href="@{/qb.search(page=${qbEndPage + 1}, search=${qbKey})}"
+									th:unless="${qbIsLast}">&gt;</a> <a th:if="${qbIsLast or qbEndPage == qbLast}">&nbsp;&nbsp;&nbsp;</a>
+								<a class="qbLastBtn"
+									th:href="@{/qb.search(page=${qbLast}, search=${qbKey})}">&raquo;</a>
+							</div>
+							<div th:unless="${qbCate == null}">
+								<a class="qbFirstBtn"
+									th:href="@{/qb.search(page=1, cate=${qbCate}, search=${qbKey})}">&laquo;</a>
+								<a class="qbPageBtn"
+									th:href="@{/qb.search(page=${qbStartPage - 1}, cate=${qbCate}, search=${qbKey})}"
+									th:unless="${qbIsFirst}">&lt;</a> <a th:if="${qbIsFirst}">&nbsp;&nbsp;&nbsp;</a>
+								<a th:id="${qbPageNumber == p ? 'qbPageNumber' : ''}"
+									class="qbPageA" th:each="p : ${pSize}"
+									th:href="@{/qb.search(page=${p}, cate=${qbCate}, search=${qbKey})}">[[${p}]]</a>
+								<a class="qbPageBtn" th:if="${qbEndPage != qbLast}"
+									th:href="@{/qb.search(page=${qbEndPage + 1}, cate=${qbCate}, search=${qbKey})}"
+									th:unless="${qbIsLast}">&gt;</a> <a th:if="${qbIsLast or qbEndPage == qbLast}">&nbsp;&nbsp;&nbsp;</a>
+								<a class="qbLastBtn"
+									th:href="@{/qb.search(page=${qbLast}, cate=${qbCate}, search=${qbKey})}">&raquo;</a>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

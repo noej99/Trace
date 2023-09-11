@@ -1,0 +1,156 @@
+@charset "UTF-8";
+
+#qbSearch {
+	border-bottom: black solid 2px;
+	padding-bottom: 30px;
+	width: 900px;
+}
+
+#qbSearch .td1{
+	width: 80%;
+}
+
+#qbSearch input{
+	width: 200px;
+	height: 20px;
+	padding-left: 5px;
+}
+#qbSearch button{
+	vertical-align: middle;
+	border: none;
+	background-color: white;
+}
+
+#qbSearch .cateTd {
+	width: 900px;
+	padding-top: 30px;
+}
+
+#qbSearch .cateTd a {
+	padding-left: 30px;
+	padding-right: 30px;
+	margin: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: black solid 1px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 11pt;
+}
+
+#qbNotice {
+	width: 900px;
+	border-bottom: black solid 2px;
+	height: 100px;
+	background-color: lightgray;
+}
+
+#qbNotice .imgTd {
+	width: 100px;
+}
+
+#qbNotice img {
+	max-width: 80px;
+	width: 80px;
+}
+
+#qbNotice .qbWriter {
+	padding-left: 20px;
+	font-size: 13pt; 
+}
+
+#qbNotice .qbDate {
+	padding-left: 20px;
+	font-size: 11pt; 
+}
+
+#qbNotice .qbTitle {
+	padding-left: 40px;
+	font-size: 13pt;
+}
+
+#qbNotice .qbView{
+	padding-right: 10px;
+}
+
+#qbNotice .qbView span {
+	vertical-align: middle;
+	padding: 2px;
+}
+
+#qbContent {
+	width: 900px;
+	border-bottom: black solid 1px;
+	height: 100px;
+}
+
+#qbContent .imgTd {
+	width: 100px;
+}
+
+#qbNotice .imgTd {
+	width: 100px;
+}
+
+#qbContent img {
+	max-width: 80px;
+	width: 80px;
+	max-height: 70px;
+}
+
+#qbNotice img {
+	max-width: 80px;
+	width: 80px;
+	max-height: 70px;
+}
+
+#qbContent .qbWriter {
+	padding-left: 20px;
+	font-size: 13pt; 
+}
+
+#qbContent .qbDate {
+	padding-left: 20px;
+	font-size: 11pt; 
+}
+
+#qbContent .qbTitle {
+	padding-left: 40px;
+	font-size: 13pt;
+	padding-right: 50px;
+}
+
+#qbContent .qbTitle a {
+	word-break: break-all;
+}
+
+#qbContent .qbView{
+	padding-right: 10px;
+}
+
+#qbContent .qbView span {
+	vertical-align: middle;
+	padding: 2px;
+}
+
+#qbPageTable {
+	margin-top: 50px;
+	margin-bottom: 70px;
+}
+
+.qbFirstBtn, .qbLastBtn {
+	font-size: 18pt;
+	vertical-align: middle;
+}
+
+.qbPageBtn {
+	padding: 5px;
+	font-size: 14pt;
+	vertical-align: middle;
+}
+
+.qbPageA {
+	padding: 3px;
+	font-size: 14pt;
+	vertical-align: middle;
+}

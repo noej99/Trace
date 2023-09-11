@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>공지사항</title>
+</head>
+<body th:fragment="noticeBoard">
+	<table id="noticeTbl">
+		<tr style="border-bottom: black solid 2px;">
+			<th style="width: 7%;">번호</th>
+			<th>제목</th>
+			<th style="width: 20%;">글쓴이</th>
+			<th style="width: 15%;">등록일</th>
+			<th style="width: 7%">조회수</th>
+			<th style="width: 7%">추천수</th>
+		</tr>
+		<tr th:if="${category == null}" th:each="n : ${notices}" class="tdNotices">
+			<td th:text="${n.no}" align="center"></td>
+			<td class="titleTd" align="center">
+				<a th:text="${n.title}" th:href="@{notice.get.detail(no=${n.no})}"></a>
+			</td>
+			<td align="center" class="writerTd">
+				<img class="writerImg" th:src="${n.writer.icon1}">
+				<span class="writerSpan" th:text="${n.writer.nick1}"></span>
+			</td>
+			<td class="dateTd" th:text="${#dates.format(n.date, 'yyyy-MM-dd HH:mm')}" align="center"></td>
+			<td th:each="count : ${counts}" th:if="${count.no == n.no}" th:text="${count.view}" align="center"></td>
+			<td th:each="count : ${counts}" th:if="${count.no == n.no}" th:text="${count.like}" align="center"></td>
+		</tr>
+		<tr th:unless="${category == null}" th:each="n : ${notices}" class="tdNotices">
+			<td th:text="${n.no}" align="center"></td>
+			<td class="titleTd" align="center">
+				<a th:text="${n.title}" th:href="@{notice.get.detail(no=${n.no})}"></a>
+			</td>
+			<td align="center" class="writerTd">
+				<img class="writerImg" th:src="${n.writer.icon1}">
+				<span class="writerSpan" th:text="${n.writer.nick1}"></span>
+			</td>
+			<td class="dateTd" th:text="${#dates.format(n.date, 'yyyy-MM-dd HH:mm')}" align="center"></td>
+			<td th:each="count : ${counts}" th:if="${count.no == n.no}" th:text="${count.view}" align="center"></td>
+			<td th:each="count : ${counts}" th:if="${count.no == n.no}" th:text="${count.like}" align="center"></td>
+		</tr>
+	</table>
+	<br>
+	
+    <div th:if="${keyword == null}" class="pagination">
+	    <a th:if="${start > 1}" th:href="@{/notice(page=${start - 1})}">&laquo;</a>
+	    <a th:each="pageNumber : ${#numbers.sequence(start, end)}"
+	          th:href="@{/notice(page=${pageNumber})}"
+	          th:class="${pageNumber == currentPage ? 'active' : ''}">
+	        <span th:text="${pageNumber}"></span>
+	    </a>
+	    <a th:if="${end < pageCount}" th:href="@{/notice(page=${end + 1})}">&raquo;</a>
+	</div>
+    <div th:unless="${keyword == null}" class="pagination">
+	    <a th:if="${start > 1}" th:href="@{/notice.search(page=${start - 1},category=${category},keyword=${keyword})}">&laquo;</a>
+	    <a th:each="pageNumber : ${#numbers.sequence(start, end)}"
+	          th:href="@{/notice.search(page=${pageNumber},category=${category},keyword=${keyword})}"
+	          th:class="${pageNumber == currentPage ? 'active' : ''}">
+	        <span th:text="${pageNumber}"></span>
+	    </a>
+	    <a th:if="${end < pageCount}" th:href="@{/notice.search(page=${end + 1},category=${category},keyword=${keyword})}">&raquo;</a>
+	</div>
+
+	<form action="/notice.search" method="get">
+		<select name="category">
+			<option value="title">제목</option>
+			<option value="content">내용</option>
+		</select>
+		<input name="keyword">
+		<button>검색</button>
+	</form>
+
+	<button th:if="${session.admin!=null}" onclick="location.href='/notice.write.go'">글쓰기</button>
+	
+	<div id="resultArea">[[${result}]]</div>
+</body>
+</html>

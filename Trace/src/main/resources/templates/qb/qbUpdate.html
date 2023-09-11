@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>TRACE</title>
+</head>
+<body th:fragment="qbUpdate">
+	<form action="qb.update" method="post" onsubmit="return submitForm();">
+		<table th:each="qb: ${qbDetails}" id="qbUpdate">
+			<tr>
+				<td><h2>Q&A게시판 글수정</h2></td>
+				<td align="right"><a class="uA"
+					th:href="@{qb.detail(no=${qb.no})}">나가기</a></td>
+			</tr>
+			<tr>
+				<td>
+					<select name="cate" id="qbCategory">
+						<option value="Java">Java</option>
+						<option value="JavaScript">JavaScript</option>
+						<option value="Python">Python</option>
+						<option value="SQL">SQL</option>
+						<option value="etc">기타</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><input name="no" th:value="${qb.no}" type="hidden">
+				</td>
+			</tr>
+			<tr>
+				<td><input name="qbWriter" th:value="${qb.qbWriter.id1}"
+					type="hidden"></td>
+				<td><input name="token" th:value="${token}" type="hidden">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" class="uTd1"><input id="qbWriteTitle" name="title"
+					th:value="${qb.title}" required></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div id="toolbar">
+						<span class="ql-formats"> <select class="ql-font">
+								<option value="arial">Arial</option>
+								<option value="comic-sans">Comic Sans</option>
+								<option value="courier-new">Courier New</option>
+								<option value="georgia">Georgia</option>
+								<option value="helvetica">Helvetica</option>
+								<option value="lucida">Lucida</option>
+						</select> <select class="ql-size">
+								<option value="extra-small">Size 1</option>
+								<option value="small">Size 2</option>
+								<option value="medium">Size 3</option>
+								<option value="large">Size 4</option>
+						</select> <select class="ql-header">
+								<option value="1">Heading</option>
+								<option value="2">Subheading</option>
+								<option value="3">Normal</option>
+						</select>
+						</span> <span class="ql-formats">
+							<button class="ql-bold"></button>
+							<button class="ql-italic"></button>
+							<button class="ql-underline"></button>
+							<button class="ql-strike"></button>
+						</span> <span class="ql-formats">
+							<button class="ql-list" value="ordered"></button>
+							<button class="ql-list" value="bullet"></button>
+							<button class="ql-indent" value="-1"></button>
+							<button class="ql-indent" value="+1"></button>
+						</span> <span class="ql-formats">
+							<button class="ql-script" value="super"></button>
+							<button class="ql-script" value="sub"></button>
+							<button class="ql-blockquote"></button>
+							<button class="ql-direction"></button>
+						</span> <span class="ql-formats"> <select class="ql-align"></select>
+							<select class="ql-color"></select> <select class="ql-background"></select>
+						</span> <span class="ql-formats">
+							<button class="ql-link"></button>
+							<button class="ql-image"></button>
+							<button class="ql-video"></button>
+						</span> <span class="ql-formats">
+							<button class="ql-code-block"></button>
+							<button class="ql-clean"></button>
+						</span>
+					</div>
+					<div id="editor" th:utext="${qb.txt}"></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<button class="uBtn" type="submit">수정</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<script type="text/javascript" src="js/qb/updateQuill.js"></script>
+</body>
+</html>

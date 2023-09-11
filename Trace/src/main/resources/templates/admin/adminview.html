@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>TRACE</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td><a href="/">홈으로</a></td>
+		</tr>
+		<tr><td><h1>신고항목</h1></td></tr>
+		<tr><td style="width: 200px;" ><h3>아이디</h3></td> <td style="width: 200px;"><h3>게시글 번호</h3></td><td style="width: 200px;"><h3>신고 항목</h3></td><td style="width: 200px;"><h3>게시판</h3></td> <td><h3>신고 사유</h3></td></tr>
+		<tr th:each="r:${r}">
+			
+			<td>[[${r.reporter.id1}]]</td>
+			<td>[[${r.rbno}]]</td>
+<!--			<td>[[${r.rbrno}]]</td>-->
+			<td>[[${r.cate}]]</td>
+			<td>[[${r.cate2}]]</td>
+			<td>[[${r.reason}]]</td>
+			
+		</tr>
+		<tr>
+			<td style="width: 500px;"><h1>활동중인 회원 명단</h1></td>
+		</tr>
+		<tr th:each="m:${m}">
+			<td th:if="${m.leave}==0">[[${m.id}]]<a
+				th:href="@{adimin.delete.writeandmember(id=${m.id})}">글 삭제+ 회원
+					탈퇴</a> &nbsp;	
+			<a th:href="@{adimin.delete.member(id=${m.id})}">회원탈퇴</a>
+			</td>
+
+		</tr>
+		<tr>
+			<td><h1>탈퇴한 회원 명단</h1></td>
+		</tr>
+		<tr th:each="m:${m}">
+			<td th:if="${m.leave}==1">[[${m.id}]]</td>
+		</tr>
+		
+		<tr><td><h1>회원 로그</h1></td></tr>
+		<tr th:each="ml:${memberlog}">
+			<td>[[${ml.logId}]]</td>
+			<td>[[${ml.logDate}]]</td>
+		</tr>
+		
+		
+		
+		
+		
+		
+		
+		
+	</table>
+
+</body>
+</html>

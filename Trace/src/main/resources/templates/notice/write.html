@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>공지사항 작성</title>
+</head>
+<body>
+	<form th:fragment="noticeWrite" action="notice.write" method="post" enctype="multipart/form-data">
+		<select name="boardCate">
+			<option value="notice">공지</option>
+			<option value="free">자유</option>
+			<option value="qna">Q&A</option>
+			<option value="code">코드</option>
+			<option value="droom">자료실</option>
+		</select>
+		<input name="writer" th:value="${session.loginMember.id}" type="hidden">
+		<input name="token" th:value="${token}" type="hidden">
+		<input id="noticeTitle" name="title" style="width: 758px; text-align: center;" placeholder="제목"><br/><br/>
+		<textarea id="summernote" name="contents"></textarea>
+		<br>
+		<button>작성</button>
+	</form>
+
+</body>
+</html>

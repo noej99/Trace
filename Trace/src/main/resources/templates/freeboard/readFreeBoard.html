@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	function del_post(no){ // 게시글 삭제 버튼을 눌렀을 때.
+		//alert(no);
+	if(confirm("해당 글을 삭제하시겠습니까?")){
+		location.href = "freeboard.del?no="+no;
+	}
+}
+	function del_reply(r_no,no){ //댓글 삭제하기 r_no는 해당 댓글의 번호, no는 삭제후 해당 게시글로 돌아가기 위해 게시글 번호를 파라미터로 보내는것
+		if(confirm("해당 댓글을 삭제하시겠습니까?")){
+			//alert(r_no);
+			location.href = "freeboard.reply.del?r_no="+r_no+"&no="+no;
+		}
+	}
+	function del_re_reply(fbrr_no,no){
+		if(confirm("해당 대댓글을 삭제하시겠습니까?")){
+			//alert(r_no);
+			location.href = "freeboard.re_reply.del?fbrr_no="+fbrr_no+"&no="+no;
+		}
+	}
+	function clk_like(no){ //게시글 좋아요를 눌렀을 때.
+		//alert(no+"번째 게시글의 좋아요를 누름!");
+		location.href = "freeboard.like?no="+no;
+	}
+</script>
+
+<body>
+	<table  id="readTbl">
+		<tr>
+			<td align="right" colspan="4">
+				<table>
+					<tr><td align="right"><img th:src="${post.writer.icon1}" style="width: 50px; height: 50px;"></td> </tr>
+					<tr><td th:text="${post.writer.nick1}" style="font-size: 20px; font-weight: bold; " align="right" >사용자 닉네임</td> </tr>
+					<tr><td th:text="${post.date}" align="right"></td> </tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="4" th:utext="${post.contents}">글 내용</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="4" style="font-weight: bold; font-size: 22px;">추천수</td>
+		</tr>
+		<tr>
+			<td th:text="${like}" colspan="4" align="center" style="font-weight: bold; font-size: 20px;"><br><p><p></td>
+		</tr>
+		<tr>
+			<td align="center"  colspan="4"> <!-- 추천 -->
+				<img width="35px" height="35px" src="/icon/thumbs_up.png" th:if="${session.loginMember}"
+				th:onclick="clk_like([[${post.no}]]);" >
+			</td>
+		</tr>
+		<tr>
+			<td align="right" colspan="4"  th:if="${session.loginMember} and ${session.loginMember['nick']} == ${post.writer.nick1}">
+				<a class="Btn" th:href="@{/freeboard.goupdate(no=${post.no})}">수정</a>
+				<button class="Btn" th:onclick="del_post([[${post.no}]]);">삭제</button>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<br>
+				<a href="freeboard" class="Btn">목록으로</a>			
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button class="reportBtn" th:if="${session.loginMember != null}" th:onclick="openWindowPop('Freeboard','[[${post.no}]]');">신고</button> </td>
+			</td>
+		</tr>
+		<tr>
+			<td class="freeboardProperty" colspan="4"></td>
+		</tr>
+		<tr>
+			<form action="freeboard.reply.write" method="post" th:onsubmit="return writereplyandrereply(this);">
+				<td align="right" colspan="4"  th:if= ${session.loginMember}>
+					<input  id="writeReply" th:name="text"  placeholder="댓글 작성" >
+					<button  class="Btn" >작성</button> 
+					<input type="hidden" name="no" th:value="${post.no}">
+					<input type="hidden" name="token"  th:value="${token}">
+				</td>
+			</form>
+		</tr>
+		<tr th:each="r : ${replys}"  >
+			<td colspan="4" align="center">
+				<table id="rereplyTbl" >
+					<tr>
+						<td style="width: 810px;"></td>
+					</tr>
+					<tr id="replyArea">
+						<td align="center"  th:text="${r.text}" style="width: 72%;"></td>
+						<td align="right" th:text="${r.writer}" style="font-weight: bold;"></td>
+						<td align="right" th:text="${#dates.format(r.date, 'MM.dd.HH:mm:ss')}"></td>
+						<td align="right" th:if="${session.loginMember} and ${session.loginMember['nick']} == ${r.writer}"><button class="Btn" th:onclick="del_reply([[${r.fbr_no}]], [[${post.no}]]);" >삭제</button>  </td>
+					</tr>
+					<tr th:each="rr :${r.re_replys}"  id="re_replyArea" style="border-bottom: 1;">
+						<td align="center"  th:text="${rr.re_text}" style="width: 72%;"></td>
+						<td align="right" th:text="${rr.writer}" style="font-weight: bold;"></td>
+						<td align="right" th:text="${#dates.format(rr.date, 'MM.dd.HH:mm:ss')}"></td>
+						<td align="right" th:if="${session.loginMember} and ${session.loginMember['nick']} == ${rr.writer}"><button id="Btn_re_reply_del" th:onclick="del_re_reply([[${rr.fbrr_no}]], [[${post.no}]] );" >삭제</button>  </td>
+					</tr>
+					<tr>
+						<td th:if="${session.loginMember}" colspan="4" align="right" >
+							<form action="freeboard.rereply.write" method="post" th:onsubmit="return writerereply(this);">
+								<input type="hidden" name="no" th:value="${post.no}">
+								<input type="hidden" name="fbrno" th:value="${r.fbr_no}">
+								<input type="hidden" name="token"  th:value="${token}">
+								<input name="re_text"  id="writeReplyre" placeholder="대댓글 작성하기" style="width: 60%;">
+								<button class="rereBtn">작성</button>
+							</form>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

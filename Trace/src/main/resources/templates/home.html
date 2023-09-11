@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table id="board" th:fragment="homeboard">
+		<tr>
+			<td>
+				<table class="mainBoard" style="border-spacing: 0px;">
+					<tr><td align="center" colspan="3"><a href="/notice"><h2>공지사항</h2></a></td></tr>
+					<tr>
+						<th>제목</th>
+						<th>글쓴이</th>
+						<th>날짜</th>
+					</tr>
+					<tr th:each="n : ${notices}">
+						<td><a th:href="@{notice.get.detail(no=${n.no})}" th:text="${n.title}"></a></td>
+						<td><span th:text="${n.writer.nick1}"></span></td>
+						<td class="dateTd" th:text="${#dates.format(n.date, 'yyyy-MM-dd')}" align="center"></td>
+					</tr>
+				</table>
+			</td>
+			<td align="center">
+				<table class="mainBoard" style="border-spacing: 0px;">
+				<tr><td align="center" colspan="3"><a href="qb.go"><h2>Q&A</h2></a></td></tr>
+					<tr>
+						<th>제목</th>
+						<th>글쓴이</th>
+						<th>날짜</th>
+					</tr>
+					<tr th:each="qb : ${qb}">
+						<td><a th:href="@{qb.detail(no=${qb.no})}" th:text="${qb.title}"></a></td>
+						<td> <span  th:text="${qb.qbWriter.nick1}"></span></td>
+						<td class="dateTd" th:text="${#dates.format(qb.date, 'yyyy-MM-dd')}" align="center"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+			<table class="mainBoard" style="border-spacing: 0px;">
+			<tr><td align="center" colspan="3"><a href="/codeboard.main.go"><h2>코드 공유</h2></a></td></tr>
+					<tr>
+						<th>제목</th>
+						<th>글쓴이</th>
+						<th>날짜</th>
+					</tr>
+					<tr th:each="cb : ${codeBoards}">
+						<td><a th:href="@{codeboard.get.detail(no=${cb.no})}" th:text="${cb.title}"></a></td>
+						<td><span th:text="${cb.writer.nick1}"></span></td>
+						<td class="dateTd" th:text="${#dates.format(cb.date, 'yyyy-MM-dd')}" align="center"></td>
+					</tr>
+				</table>
+			
+			</td>
+			<td align="center">
+				<table class="mainBoard" style="border-spacing: 0px;">
+					<tr><td align="center" colspan="3"><a href="/dataroom"><h2>자료실</h2></a></td></tr>
+					<tr>
+						<th>제목</th>
+						<th>글쓴이</th>
+						<th>날짜</th>
+					</tr>
+					<tr th:if="${list} != null" th:each="l, i : ${list}">
+						<td> <a th:href="@{dataroom.view(no=${l.no})}" th:text="${l.title}"></a></td>
+						<td><span th:text="${l.drMw.nick1}"></span></td>
+						<td class="dateTd" th:text="${#dates.format(l.date, 'yyyy-MM-dd')}" align="center"></td>
+					</tr>
+					<tr th:unless="${list} != null">
+						<td colspan="3" align="center">
+							게시글이 없습니다.
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>

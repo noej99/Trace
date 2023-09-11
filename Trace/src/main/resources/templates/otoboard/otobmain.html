@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="otobItem" >
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body id="otobd">
+	<form method="post" id="otoform" action="write.otob">
+	<input name="token" type="hidden" th:value="${token}">
+	
+		<select style="border: none; font-weight: 600;"  name="cate" class="otoetc">
+			<option value="편의성&기능관련">편의성&기능관련</option>
+			<option value="버그제보">버그제보</option>
+			<option value="기타">기타</option>
+		</select> <input maxlength="15" id="title" name="title">
+
+		<textarea id="onetoonetxt" name="contents" rows="10" cols="10"></textarea>
+		<button style="background-color: transparent; border: none; font-family: sb; font-size: 17pt;">문의하기</button>
+	</form>
+
+		<div><h2>접수중</h2></div>
+	<table class="ototb" th:each="o:${otob}"
+		th:if="${session.loginMember.id == o.writer.id1 or session.admin != null}">
+		
+
+		<tr th:if="${o.status==0}">
+			
+			<td class="ototitletd" style="font-weight: 600;" th:if=${session.admin!=null}><span class="otbspan" th:text="${o.writer.id1}"></span></td>
+			<td class="ototitletd"><a 
+				th:href="@{/get.detail.otob(no=${o.no})}" th:text="${o.title}"></a>
+			</td>
+			<td align="center">[[${o.cate}]]</td>
+			
+			<td align="center" th:text="${#dates.format(o.date, 'yyyy-MM-dd HH:mm')}" ></td>
+			<td><a id="otoa" th:href="@{/delete.otob(no=${o.no})}">삭제</a></td>
+		</tr>
+	</table>
+	
+		<div><h2>답변완료</h2></div>
+	<table class="ototb" th:each="o:${otob}"
+		th:if="${session.loginMember.id == o.writer.id1 or session.admin != null}">
+		<tr th:if="${o.status==1}">
+		<td class="ototitletd" th:if=${session.admin!=null}><span style="font-weight: 600;" class="otbspan" th:text="${o.writer.id1}"></span></td>
+			<td class="ototitletd"><a class="ototb"
+				th:href="@{/get.detail.otob(no=${o.no})}" th:text="${o.title}"></a>
+			</td>
+			<td align="center">[[${o.cate}]]</td>
+				<td align="center" th:text="${#dates.format(o.adate, 'yyyy-MM-dd HH:mm')}" ></td>
+			<td><a id="otoa" th:href="@{/delete.otob(no=${o.no})}">해결</a></td>
+		</tr>
+	</table>
+</body>
+</html>

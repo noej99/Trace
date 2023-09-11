@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>[[${details.title}]]</title>
+</head>
+<body th:fragment="noticeDetail">
+	<div id="detailDiv" th:each="d : ${details}">
+		<div>
+			<img class="writerImg" th:src="${d.writer.icon1}" alt="">
+			<span class="detailWriter" th:text="${d.writer.nick1}"></span>
+			<span class="detailDate" th:text="${#dates.format(d.date, 'yyyy-MM-dd HH:mm')}"></span>
+		</div>
+		<br><br>
+		<div class="detailTitle">
+			<h1 th:text="${d.title}"></h1>
+		</div>
+		<br>
+		<div class="detailContent" th:utext="${d.contents}"></div>
+		<div th:if="${session.admin!=null}">
+			<a th:href="@{notice.update.go(no=${d.no})}">수정</a>
+			<a th:href="@{notice.delete(no=${d.no})}">삭제</a>
+		</div>
+	</div>
+</body>
+</html>

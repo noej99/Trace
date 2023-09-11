@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="noticeWrite">
+<head>
+<meta charset="UTF-8">
+<title>공지사항 작성</title>
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js) -->
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.css">
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/theme/monokai.css">
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/codemirror.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.20.0/mode/xml/xml.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/codemirror/2.36.0/formatting.js"></script>
+
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#summernote').summernote({
+			  height: 300,                 // 에디터 높이
+			  minHeight: null,             // 최소 높이
+			  maxHeight: null,             // 최대 높이
+			  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+			  lang: "ko-KR",					// 한글 설정
+			  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+	          
+		});
+	});
+</script>
+</head>
+<body>
+	<form action="notice.write" method="post">
+		<input name="writer" th:value="${session.loginMember.id}" type="hidden">
+		<input id="noticeTitle" name="title" style="width: 100%; text-align: center;" placeholder="제목"><br/><br/>
+		<textarea id="summernote" name="contents"></textarea>
+		<button>작성</button>
+	</form>
+
+</body>
+</html>

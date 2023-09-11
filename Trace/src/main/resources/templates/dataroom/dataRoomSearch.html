@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table th:fragment="dataRoomList" id="drTbl1">
+		<link rel="stylesheet" href="css/dataroom/dataroom.css">
+		<link rel="stylesheet" href="css/dataroom/dataroomView.css">
+		<tr>
+			<td id="drViewHeader" colspan="7">
+				<a th:href="@{/dataroom}">자료실</a>
+			</td>
+		</tr>
+		<tr align="center">
+			<td>번호</td>
+			<td>제목</td>
+			<td colspan="2">글쓴이</td>
+			<td>작성일시</td>
+			<td>조회수</td>
+			<td>추천수</td>
+		</tr>
+		<tr class="drNotice" th:if="${cateNotice} != null" th:each="cn : ${cateNotice}" align="center">
+			<td th:text="공지"></td>
+			<td> <a th:href="@{notice.get.detail(no=${cn.no})}" th:text="${cn.title}"></a> </td>
+			<td><img style="max-width: 30px; max-height: 30px;" th:src="${cn.writer.icon1}"></td>
+			<td th:text="${cn.writer.nick1}"></td>
+			<td th:if="${#dates.createToday().after(cn.date)}" th:text="${#dates.format(cn.date, 'yyyy-MM-dd')}"></td>
+			<td th:unless="${#dates.createToday().after(cn.date)}" th:text="${#dates.format(cn.date, 'HH:mm:ss')}"></td>
+			<td th:each="cnt : ${counts}" th:if="${cn.no == cnt.no}" th:text="${cnt.view}" align="center"></td>
+			<td th:each="cnt : ${counts}" th:if="${cn.no == cnt.no}" th:text="${cnt.like}" align="center"></td>
+		</tr>
+		<tr class="drPost" th:if="${list} != null" th:each="l, i : ${list}" align="center">
+			<td th:text="${l.no}"></td>
+			<td> <a th:href="@{dataroom.view(no=${l.no})}" th:text="${l.title + ' [' + replyCount[i.index]} + ']'"></a></td>
+			<td><img style="max-width: 40px; max-height: 40px;" th:src="${l.drMw.icon1}"></td>
+			<td th:text="${l.drMw.nick1}"></td>
+			<td th:text="${#dates.format(l.date, 'yyyy-MM-dd')}"></td>
+			<td th:each="c : ${count}" th:if="${l.no == c.no}" th:text="${c.view}"></td>
+			<td th:each="c : ${count}" th:if="${l.no == c.no}" th:text="${c.like}"></td>
+		</tr>
+		<tr th:if="${list} != null">
+			<td id="drTblPageTd" colspan="7">
+				<div id="drPageRow">
+					<a class="drPageBtn" th:href="@{/dataroom.search(page=${curPage - 1},category=${category},keyword=${keyword})}" th:if="${!isFirst}">&lt;</a>
+					<a th:id="${curPage == p ? 'curPage' : ''}" class="drPageBtn" th:each="p : ${pageRow}" th:href="@{/dataroom.search(page=${p},category=${category},keyword=${keyword})}">[[${p}]]</a>
+					<a class="drPageBtn" th:href="@{/dataroom.search(page=${curPage + 1},category=${category},keyword=${keyword})}" th:if="${!isLast}">&gt;</a>
+				</div>
+			</td>
+		</tr>
+		<tr th:unless="${list} != null">
+			<td colspan="7" align="center">
+				검색결과가 없습니다.
+			</td>
+		</tr>
+		<tr id="drSearch">
+			<td colspan="5">
+				<form action="dataroom.search" method="get">
+					<select name="category">
+						<option value="title">제목</option>
+						<option value="content">내용</option>
+						<option value="writer">글쓴이</option>
+					</select>
+					<input name="keyword">
+					<button>검색</button>
+				</form>
+			</td>
+			<td colspan="2" th:if="${session.loginMember != null}">
+				<div>
+					<a id="drWriteBtn" href="/dataroom.write">글쓰기</a>
+				</div>	
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

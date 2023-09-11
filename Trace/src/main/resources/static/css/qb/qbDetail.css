@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+#qbDetailTable {
+	width: 900px;
+	border-bottom: black solid 2px;
+	margin-bottom: 100px;
+}
+
+#qbDetailTable .td1 {
+	width: 100px;
+	padding-left: 20px;
+}
+
+#qbDetailTable .td1 img {
+	max-width: 90%;
+	width: 90px;
+}
+
+#qbDetailTable .td2 {
+	width: 100px;
+	font-size: 14pt;
+}
+
+#qbDetailTable .td3 {
+	padding: 20px;
+	font-size: 12pt;
+}
+
+#qbDetailTable .td4,
+.td5 {
+	padding-right: 20px;
+}
+
+#qbDetailTable .td5 a {
+	font-size: 11pt;
+}
+
+#span1 {
+	padding: 2px;
+	vertical-align: middle;
+	padding-right: 10px;
+}
+
+#qbDetailTable .td6 {
+	height: 50px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-top: black solid 2px;
+	width: 800px;
+}
+
+#qbDetailTable .td6 h2 {
+	word-break: break-all;
+}
+
+#qbDetailTable .td7 {
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	height: 70%;
+	vertical-align: top;
+	width: 800px;
+}
+
+#qbDetailTable .td8 {
+	padding-top: 50px;
+}
+
+#qbDetailTable .td8 button {
+	border: black solid 1px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+}
+
+#qbDetailTable .td9 {
+	border-top: black solid 2px;
+}
+
+#qbDetailTable .td9 .editorTd {
+	padding: 40px;
+}
+
+#qbDetailTable .td9 .editorTd .button1 {
+	margin: 20px;
+	background-color: transparent;
+	width: 100px;
+	padding: 5px;
+}
+
+#qbDetailTable .td10 {
+	padding: 20px;
+	border-top: black solid 2px;
+	font-size: 13pt;
+}
+
+#qbReply {
+	padding: 5px;
+	padding-left: 25px;
+	border-top: lightslategray solid 1px;
+	width: 100%;
+}
+
+#qbReply .span2,
+.span3 {
+	padding-left: 10px;
+	font-size: 11pt;
+}
+
+#qbReply .rTd1 {
+	padding-left: 10px;
+	padding-bottom: 15px;
+	width: 750px;
+	font-size: 12pt;
+	word-break: break-all;
+}
+
+#qbReReply {
+	padding: 5px;
+	width: 100%;
+	border-top: lightslategray dotted 1px;
+}
+
+#qbReReply .rTd2 {
+	padding-left: 25px;
+	padding-bottom: 2px;
+	width: 700px;
+	font-size: 12pt;
+	word-break: break-all;
+}
+
+#qbReply .copyButton {
+	background-color: transparent;
+	border: none;
+	color: lightslategray;
+}
+
+#qbReply .rDeleteBtn {
+	background-color: transparent;
+	border: none;
+	color: lightslategray;
+}

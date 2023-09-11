@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+#writeForm {
+	width: 900px;
+}
+
+#writeForm form {
+	width: 900px;
+	text-align: initial;
+}
+
+#writeForm #drWriteFormTitle {
+	display: block;
+	margin: 10px auto;
+	padding: 5px;
+	font-size: 10pt;
+}
+
+#writeForm form .note-editor {
+	margin: 0 50px;
+}
+
+#writeForm form>input:first-child {
+	display: inline-block;
+	position: relative;
+	width: 800px;
+	border: #ccc solid 1px;
+	height: 21px;
+	border-radius: 3px;
+}
+
+#writeForm #drWriteFormFile {
+	display: block;
+	margin: 10px auto;
+	font-size: 10pt;
+}
+
+#writeForm #drWriteFormBtn {
+	padding: 2px 5px;
+	display: block;
+	margin: 10px auto;
+	font-size: 10pt;
+}

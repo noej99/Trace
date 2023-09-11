@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="freeboard.write" method="POST" enctype="multipart/form-data" th:fragment="freeboardWrite" th:onsubmit="return writeFreeboard(this);">
+	<table id="writeFreeBoardTbl" >
+	<tr>
+		<td id="FreeBoardTitle">자유게시판 글쓰기</td>
+	</tr>
+	<tr>
+		<td><input name="token" type="hidden"  th:value="${token}"/>
+		 </td>
+	</tr>
+	<tr>
+		<td ><input name="writer" type="hidden" th:value="${session.loginMember.id}"/></td>
+	</tr>
+		<tr>
+			<td align="center"><textarea id="summernote" name="contents" ></textarea> </td>
+		</tr>
+		<tr>
+			<td align="center" ><button class="postFBBtn">작성</button> </td>
+		</tr>
+		<tr>
+			<td align="center" ><br><a href="freeboard" class="Btn">목록으로</a> </td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>

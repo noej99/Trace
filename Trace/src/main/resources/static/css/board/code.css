@@ -1,0 +1,325 @@
+@charset "UTF-8";
+
+#codeBoardTitleTbl {
+	width: 100%;
+}
+
+#codeBoardTbl {
+	width: 100%;
+}
+
+#codeBoardArea {
+	float: left;
+	width: 100%;
+	padding: 26px 1%;
+	border-top: none;
+	border-left: none;
+	border-collapse: separate;
+	border-spacing: 0 10px;
+	margin-bottom: 30px;
+	border-bottom: 1px solid gray;
+}
+
+.cbTitleTd a {
+    text-decoration: none;
+    transition: border-bottom 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.cbTitleTd a:hover {
+    border-bottom: 2px solid #007bff;
+}
+
+#codeBoardArea .codeBoardAreaNo {
+	width: 100px;
+}
+
+#codeBoardArea .codeBoardAreaTitle {
+	width: 450px;
+}
+
+#codeBoardWriteTitle {
+	height: 50px;
+	width: 900px;
+	font-size: 20pt;
+	text-align: center;
+	margin-top: 100px;
+}
+
+#codeBoardWriteTitle ::placeholder {
+	font-size: 20pt;
+}
+
+#codeBoardWriteGoBtn {
+	float: right;
+	cursor: pointer;
+	font-weight: 900;
+	font-size: 15pt;
+	color: blue;
+}
+
+#codeBoardWriteBtn {
+	height: 30px;
+	width: 80px;
+	font-size: 14pt;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+#codeBoardArea .imgTd {
+	width: 60px;
+}
+
+#codeBoardArea .writerImg {
+	max-width: 50px;
+}
+
+#codeBoardSearch {
+	height: 22px;
+	width: 200px;
+}
+
+#codeBoardSearch::placeholder {
+	text-align: center;
+}
+
+#codeBoardSearchBtn {
+	width: 50px;
+	cursor: pointer;
+	background-color: transparent;
+}
+
+.cbWriterImg {
+	max-height: 40px;
+	max-width: 60px;
+	height: 40px;
+	width: 60px;
+	text-align: left;
+}
+
+.cbDetailWriter {
+	text-align: left;
+}
+
+.cbPageNumber {
+	padding-left: 100px;
+	font-size: 18pt;
+	font-weight: 900;
+}
+
+.cbSearchBar {
+	display: inline-block;
+	border: 2px solid gray;
+	border-radius: 5px;
+	margin-bottom: 100px;
+}
+
+.cbCategory {
+    width: 70px;
+    height: 35px;
+	border: none;
+    outline: none;
+	font-size: 13pt;
+	font-weight: 900;
+}
+
+.cbCategorySearch {
+    width: 300px;
+    height: 35px;
+    font-size: 11pt;
+	border: none;
+	outline: none;
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+	font-size: 13pt;
+}
+
+.cbCategorySearchBtn {
+    width: 60px;
+    height: 35px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	font-size: 13pt;
+	font-weight: 900;
+	background-color: transparent;
+}
+
+#codeBoardMainGoBtn {
+	float: right;
+	cursor: pointer;
+	font-weight: 900;
+	font-size: 15pt;
+	margin-right: 10px;
+}
+
+
+
+#codeboardDetailDiv .detailTitle {
+	float: left;
+}
+
+.cbDivUpDel {
+	float: right;
+}
+
+.cbDivUp {
+	color: blue;
+	font-weight: 900;
+	font-size: 15pt;
+	margin-right: 5px;
+}
+
+.cbDivUp:visited {
+	color: blue;
+}
+
+.cbDivDel {
+	color: red;
+	font-size: 15pt;
+	font-weight: 900;
+}
+
+
+
+.cbDetailInfo {
+	margin-top: 30px;
+	float: right;
+}
+
+.cbDetailTxt {
+	max-width: 800px;
+	word-break: break-all;
+	text-overflow: ellipsis;
+}
+
+.ql-syntax {
+	max-width: 800px;
+	word-break: break-all;
+	text-overflow: ellipsis;
+}
+
+.cbDetailTxt img {
+	max-width: 800px;
+}
+
+.cbDetailTxt p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.cbWriterImg,
+.cbReplyWriter,
+.cbReplyDate {
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.cbReplyTxt {
+    float: left;
+}
+
+.cbReplyDel {
+	color: red;
+	border: none;
+	cursor: pointer;
+	font-size: 12pt;
+	font-weight: 900;
+	background-color: transparent;
+}
+
+#cbReplyForm {
+	width: 500px;
+	display: inline-block;
+	border: 2px solid gray;
+	border-radius: 5px;
+	margin-bottom: 100px;
+}
+
+#cbReplyTxt {
+	width: 430px;
+	height: 50px;
+	border: none;
+	outline: none;
+	font-size: 13pt;
+}
+
+#cbReplyBtn {
+	width: 60px;
+	height: 50px;
+	border: none;
+	outline: none;
+	font-size: 13pt;
+	font-weight: 900;
+	cursor: pointer;
+	background-color: transparent;
+}
+
+.cbReplyList {
+    position: relative;
+}
+
+.cbReplyList::after {
+    content: "";
+    display: block;
+    border-bottom: 1px solid gray;
+    margin: 10px 0;
+}
+
+
+
+
+
+#editor {
+  width: 900px;
+  margin: 0 auto;
+  min-height: 400px;
+}
+
+#editor1 {
+	width: 900px;
+	margin: 0 auto;
+	min-height: 200px;
+}
+
+.cbWriteEditTitle{
+	width: 900px;
+	height: 50px;
+	font-size: 20pt;
+}
+
+.cbWriteEditBtn{
+	width: 150px;
+	height: 50px;
+	border: none;
+	outline: none;
+	font-size: 20pt;
+	font-weight: 900;
+	cursor: pointer;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	background-color: transparent;
+}
+
+.cbWriteEditBack{
+	width: 150px;
+	height: 50px;
+	border: none;
+	outline: none;
+	font-size: 15pt;
+	cursor: pointer;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-left: 50px;
+}
+
+.cbReport {
+	float: right;
+	color: red;
+	border: none;
+	cursor: pointer;
+	font-size: 15pt;
+	font-weight: 900;
+	background-color: transparent;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<body th:fragment="freeboardUpdate">
+	<table id="writeFreeBoardTbl">
+		<tr>
+			<td align="center"  style="font-weight: bold ; font-size: 30px; padding: 10px;">자유게시판 글 수정 </td>
+		</tr>
+		<form action="freeboard.update" method="post" th:onsubmit="return writeFreeboard(this);">
+		<tr><input type="hidden" name="no" th:value="${post.no}"/> </tr>
+		<tr><input type="hidden" name="date_origin" th:value="${post.date}"/> </tr>
+		<tr><input type="hidden" name="writer" th:value="${session.loginMember.id}"/> </tr>
+		<tr><input type="hidden" name="view" th:value="${post.view}"/> </tr>
+		<tr>
+			<td align="center"><textarea id="summernote" name="contents"  th:utext="${post.contents}"></textarea> </td>
+		</tr>
+		<tr>
+			<td align="center"><button id="postFBBtn" class="Btn">수정하기</button> </td>
+		</tr>
+	</form>
+	</table>
+</body>
+</html>

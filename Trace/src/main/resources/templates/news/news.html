@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  th:fragment="newsItem">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Feed</title>
+<script type="text/javascript" src="js/jQuery.js"></script>
+<script type="text/javascript" src="js/news/tracenews.js"></script>
+<script type="text/javascript" src="js/news/top10.js"></script>
+</head>
+<body>
+<h1>IT/경제/과학</h1>
+<a class="newsa" th:onclick="openTop10WindowPop('go.itTop10', 'top10')">ITTop10</a><p>
+<a class="newsa" href="go.culture.news">연예/문화</a>&nbsp;&nbsp;&nbsp;<a class="newsa" href="go.world.news">세계</a>&nbsp;
+    <div id="news-container"></div>
+    <div id="pagination-controls"></div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+#noticeTbl {
+	padding: 5px;
+	width: 90%;
+	font-size: 10pt;
+	border: black solid 2px;
+	border-radius: 10px;
+	border-spacing: 0px;
+}
+
+#noticeTbl tr {
+	height: 40px;
+}
+
+#noticeTbl th {
+	border-bottom: black solid 2px;
+}
+
+#noticeTbl .tdNotices td {
+	border-bottom: lightgray dotted 1px;
+}
+
+#noticeTbl .tdNotices:nth-last-child(1) td {
+	border-bottom: none;
+}
+
+#noticeTbl .imgTd{
+	width: 60px;
+}
+
+#noticeTbl .writerImg {
+	max-width: 50px;
+}
+
+#noticeTbl .dateTd {
+	font-size: 10pt;
+}
+
+#detailDiv {
+	padding: 0px 0px 100px 100px;
+}
+
+#detailDiv .noticeHeader {
+	padding: 5px;
+	font-size: 18pt;
+	font-weight: bold;
+}
+
+.detailWriterInfo {
+	width: 260px;
+	height: 40px;
+	text-align: left;
+	vertical-align: middle;
+	float: left;
+}
+
+#detailDiv .writerImg {
+	max-width: 50px;
+	float: left;
+}
+
+#detailDiv .detailWriter{
+	height: 28px;
+	vertical-align: middle;
+	text-align: left;
+	font-size: 11pt;
+	float: left;
+	cursor: pointer;
+}
+
+#detailDiv .detailDate {
+	width: 260px;
+	height: 40px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#detailDiv .detailHit {
+	width: 260px;
+	height: 40px;
+	text-align: right;
+	vertical-align: middle;
+	float: right;
+}
+
+#detailDiv .detailTitle {
+	text-align: left;
+}
+
+#detailDiv .detailContent {
+	font-size: 12pt;
+	text-align: left;
+}
+
+#detailDiv .detailWork {
+	border: black solid 1px;
+	border-radius: 3px;
+	padding: 5px;
+}
+
+#detailDiv .likeBtn {
+	cursor: pointer;
+	height: 50px;
+	width: 50px;
+}
+
+.active {
+	font-size: 15pt;
+	color: darkorange;
+}

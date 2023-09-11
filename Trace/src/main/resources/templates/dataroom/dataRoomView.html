@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table th:fragment="dataRoomList" id="drvTbl">
+		<link rel="stylesheet" href="css/dataroom/dataroom.css">
+		<link rel="stylesheet" href="css/dataroom/dataroomView.css">
+		<tr>
+			<td id="drViewHeader" colspan="7">
+				<a th:href="@{/dataroom}">자료실</a>
+			</td>
+		</tr>
+		<tr class="drViewContent">
+			<td>[[${list.no}]]</td>
+			<td>[[${list.title}]]</td>
+			<td><img style="max-width: 40px; max-height: 40px;" th:src="${list.drMw.icon1}"></td>
+			<td>[[${list.drMw.nick1}]]</td>
+			<td th:if="${#dates.createToday().after(list.date)}" th:text="${#dates.format(list.date, 'yyyy-MM-dd')}"></td>
+			<td th:unless="${#dates.createToday().after(list.date)}" th:text="${#dates.format(list.date, 'HH:mm:ss')}"></td>
+			<td>[[${count.view}]]</td>
+			<td>[[${count.like}]]</td>
+		</tr>
+		<tr id="drViewMainTr">
+			<td colspan="7">
+				<div id="drViewMain" th:utext="${list.content}"></div>
+			</td>
+		</tr>
+		<tr class="drViewFile drViewContent" th:each="df : ${drFiles}">
+			<td colspan="5">
+				[[${df.file}]]
+			</td>
+			<td id="drViewFileBtn" colspan="2">
+				<a th:if="${session.loginMember != null}" th:href="'/dataroom.download/' + ${df.file}">다운로드</a>
+			</td>
+		</tr>
+		<tr id="drViewBtnRow" class="drViewContent" th:if="${session.loginMember != null}">
+			<td colspan="4"></td>
+			<td>
+				<button th:if="${session.admin != null || (session.loginMember != null && session.loginMember.id == list.drMw.id1)}" th:onclick="location.href='dataroom.modify?no=[[${list.no}]]'">수정</button>
+				<button th:if="${session.admin != null || (session.loginMember != null && session.loginMember.id == list.drMw.id1)}" th:onclick="dataroomDelete([[${list.no}]]);">삭제</button>
+			</td>
+			<td>
+				<button th:if="${session.loginMember != null}" th:onclick="openWindowPop('dataroom','[[${list.no}]]');">신고</button>
+			</td>
+			<td>
+				<button th:if="${session.loginMember != null}" th:onclick="dataroomLike([[${list.no}]], [[${session.loginMember.id}]]);">좋아요</button>
+			</td>
+		</tr>
+		<tr class="drLine">
+			<td colspan="7">
+				<table th:each="r, i : ${list.replys}" class="drvReplyTbl">
+					<tr id="drrrrr">
+						<td></td><td></td><td></td><td></td><td></td>
+						<td></td><td></td><td></td><td></td><td></td>
+						<td></td><td></td><td></td><td></td><td></td>
+						<td></td><td></td><td></td><td></td><td></td>
+					</tr>
+					<tr class="drReply">
+						<td th:text="${i.index + 1}"></td>
+						<td colspan="10" th:if="${session.loginMember != null}" th:onclick="reReply(this, [[${list.no}]], [[${r.no}]], [[${session.loginMember.id}]], [[${token}]]);" th:text="${r.txt}"></td>
+						<td colspan="10" th:unless="${session.loginMember != null}" th:text="${r.txt}"></td>
+						<td colspan="4">
+							<img style="max-width: 40px; max-height: 40px;" th:src="${r.drrMw.icon1}">[[${r.drrMw.nick1}]]
+						</td>
+						<td colspan="3" th:text="${#dates.format(r.date, 'yyyy-MM-dd')}"></td>
+						<td colspan="2" th:if="${session.admin!=null || (session.loginMember != null && session.loginMember.id == r.drrMw.id1)}">
+							<button th:onclick="deleteReply([[${r.drrDr.no}]],[[${r.no}]]);">댓글삭제</button>
+						</td>
+						<td colspan="2" th:unless="${session.admin!=null || (session.loginMember != null && session.loginMember.id == r.drrMw.id1)}"></td>
+					</tr>
+					<tr class="drReReply" th:each="rr, ii : ${r.reReplys}">
+						<td></td>
+						<td>└</td>
+						<td colspan="9" th:text="${rr.txt}"></td>
+						<td colspan="4">
+							<img style="max-width: 40px; max-height: 40px;" th:src="${rr.drrrMw.icon1}">[[${rr.drrrMw.nick1}]]
+						</td>
+						<td colspan="3" th:text="${#dates.format(rr.date, 'yyyy-MM-dd')}"></td>
+						<td colspan="2" th:if="${session.admin != null || (session.loginMember != null && session.loginMember.id == rr.drrrMw.id1)}">
+							<button th:onclick="deleteReReply([[${rr.drrrDr.no}]],[[${rr.no}]]);">댓글삭제</button>
+						</td>
+						<td colspan="2" th:unless="${session.admin != null || (session.loginMember != null && session.loginMember.id == rr.drrrMw.id1)}"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr id="drReplyWrite" th:if="${session.loginMember != null}">
+			<td colspan="7" align="center">
+				<form action="dataroom.reply" method="post">
+					<input name="txt">&nbsp;
+					<button>쓰기</button>
+					<input name="drrDr" th:value="${list.no}" hidden="hidden">
+					<input name="drrMw" th:value="${session.loginMember.id}" hidden="hidden">
+					<input name="drNo" th:value="${list.no}" hidden="hidden">
+					<input name="token" th:value="${token}" hidden="hidden">
+				</form>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

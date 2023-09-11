@@ -1,0 +1,27 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body id="otobd" th:fragment="otobDeatil">
+<table class="ototb" th:each="o:${otobdetails}">
+<tr><td  align="center" style="font-size: 20pt; font-weight: 800; ">[[${o.cate}]]</td> </tr>
+<tr><td style="font-weight: 600;">[[${o.title}]]</td> </tr>
+<tr><td  style="height: 150px; padding-left: 30px;">[[${o.contents}]]</td> </tr>
+
+</table>
+<table th:each="o:${otobdetails}" style="margin: 20px;">
+<tr th:if="${o.adate!=null}"><td style="font-weight: 900;">답변 날짜:</td><td style="font-weight: 900;" colspan="2" th:text="${#dates.format(o.adate, 'yyyy-MM-dd HH:mm')}"></td></tr>
+</table>
+<table th:each="o:${otobdetails}">
+<tr ><td>[[${o.answer}]]</td></tr>
+</table>
+<form method="post" id="otoform" th:if="${session.admin!=null}" action="answer.otob" th:each="o:${otobdetails}">
+<input  name="no" type="hidden" th:value="${o.no}">
+<input name="status" value="1" type="hidden">
+<textarea id="onetoonetxt" rows="10" cols="10" placeholder="답변" name="answer"></textarea>
+<button style="background-color: transparent; border: none; font-weight: 600; font-size: 15pt;" >답변</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>TRACE</title>
+<style type="text/css"></style>
+</head>
+<body>
+	<table th:fragment="loginedM" border="1" id="menuLoiginTbl">
+		<tr th:each="m:${session.loginMember}">
+			<td id="loginImgTd" rowspan="2" align="center"><img style="width: 70px; max-height: 100px;" id="img" th:src="${m.icon}"></td>
+					
+			<td colspan="2" align="center" th:text="${m.nick}"></td>
+		</tr>
+		<tr>
+			<td align="center"><a style="font-weight: 1000" href="member.detailck.go">내 정보</a></td>
+			<td align="center"><a style="font-weight: 1000" href="member.logout">로그아웃</a></td>
+		</tr>
+	</table>
+
+</body>
+</html>
