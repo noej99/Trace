@@ -73,7 +73,7 @@ public class MemberController {
 		cDAO.get(request, 0, cd);
 		drDAO.get(request);
 		qDAO.get(request);
-		fDAO.get(request);
+		
 		request.setAttribute("cp", "home");
 		request.setAttribute("cpSub", "homeboard");
 		request.setAttribute("loginPage", "member/logined");
