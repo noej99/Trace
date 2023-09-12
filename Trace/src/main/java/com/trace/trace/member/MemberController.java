@@ -91,7 +91,6 @@ public class MemberController {
 		cDAO.get(request, 0, cd);
 		drDAO.get(request);
 		qDAO.get(request);
-		fDAO.get(request);
 
 		request.setAttribute("cp", "home");
 		request.setAttribute("cpSub", "homeboard");
@@ -122,7 +121,6 @@ public class MemberController {
 		cDAO.get(request, 0, cd);
 		drDAO.get(request);
 		qDAO.get(request);
-		fDAO.get(request);
 
 		request.setAttribute("cp", "home");
 		request.setAttribute("cpSub", "homeboard");
@@ -142,7 +140,7 @@ public class MemberController {
 			nDAO.get(request, 0, n);
 			drDAO.get(request);
 			qDAO.get(request);
-			fDAO.get(request);
+			
 			request.setAttribute("cp", "home");
 			request.setAttribute("cpSub", "homeboard");
 			
@@ -180,7 +178,6 @@ public class MemberController {
 			cDAO.get(request, 0, cd);
 			drDAO.get(request);
 			qDAO.get(request);
-			fDAO.get(request);
 
 			request.setAttribute("cp", "home");
 			request.setAttribute("cpSub", "homeboard");
@@ -196,6 +193,10 @@ public class MemberController {
 		mDAO.login(request, m);
 		mDAO.update(request, m, mw);
 		cDAO.get(request, 0, cd);
+		nDAO.get(request, 0, n);
+		drDAO.get(request);
+		qDAO.get(request);
+		
 		request.setAttribute("loginPage", "member/logined");
 		request.setAttribute("loginSub", "loginedM");
 		request.setAttribute("cp", "home");
@@ -208,6 +209,7 @@ public class MemberController {
 		mDAO.islogined(request);
 		mDAO.login(request, m);
 		mDAO.delete(request);
+		
 		request.setAttribute("loginPage", "member/logined");
 		request.setAttribute("loginSub", "loginedM");
 		request.setAttribute("cp", "home");
@@ -225,7 +227,6 @@ public class MemberController {
 		cDAO.get(request, 0, cd);
 		drDAO.get(request);
 		qDAO.get(request);
-		fDAO.get(request);
 
 		request.setAttribute("loginPage", "member/logined");
 		request.setAttribute("loginSub", "loginedM");
