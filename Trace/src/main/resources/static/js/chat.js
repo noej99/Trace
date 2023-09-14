@@ -48,9 +48,8 @@ $(function() {
             tr = $("<tr></tr>").append(td1, td2, td3);
         }
 
-        $("table.chatboard").append(tr, $("<tr><td><p></td></tr>")); // Only append to tables with class "chatboard"
+        $("table.chatboard").append(tr);
         
-        // Automatically scroll to the bottom of the chat content
         var chatMessages = document.getElementById("chatMessages");
         chatMessages.scrollTop = chatMessages.scrollHeight;
     });
