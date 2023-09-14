@@ -48,7 +48,7 @@ $(function() {
             tr = $("<tr></tr>").append(td1, td2, td3);
         }
 
-        $("table.chatboard").append(tr);
+        $("table.chatboard").append(tr, $("<tr><td><p></td></tr>"));
         
         var chatMessages = document.getElementById("chatMessages");
         chatMessages.scrollTop = chatMessages.scrollHeight;
