@@ -25,15 +25,13 @@
 			<td style="width: 500px;"><h1>활동중인 회원 명단</h1></td>
 		</tr>
 		<tr th:each="m:${m}">
-			<td th:if="${m.leave}==0">[[${m.id}]]<a
-				th:href="@{adimin.delete.writeandmember(id=${m.id})}">글 삭제+ 회원
-					탈퇴</a> &nbsp;	
+			<td th:if="${m.leave}==0">[[${m.id}]]
 			<a th:href="@{adimin.delete.member(id=${m.id})}">회원탈퇴</a>
 			</td>
 
 		</tr>
 		<tr>
-			<td><h1>탈퇴한 회원 명단</h1></td>
+			<td><h1>휴면계정 명단</h1></td>
 		</tr>
 		<tr th:each="m:${m}">
 			<td th:if="${m.leave}==1">[[${m.id}]]</td>

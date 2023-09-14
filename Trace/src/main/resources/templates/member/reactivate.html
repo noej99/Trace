@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>TRACE</title>
+<head >
+<meta charset="utf-8">
+<title>Insert title here</title>
 <script type="text/javascript" src="js/joinck.js"></script>
 <script type="text/javascript" src="js/joinckh.js"></script>
 <script type="text/javascript" src="js/jQuery.js"></script>
 <script type="text/javascript" src="js/tracejQuery.js"></script>
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <link rel="stylesheet" href="css/member/join.css">
 <link rel="stylesheet" href="css/member/login.css">
 </head>
-
 <body>
-	<table id="jointitleArea">
+<table id="jointitleArea">
 		<tr><th>
 		<a href="/" style="user-select: none;">
 		T<span class="letterR">R</span><span class="letterA">A</span>CE</a></th>
@@ -24,7 +21,7 @@
 			<th></th>
 		</tr>
 	</table>
-	<form action="member.findedpw" method="post" enctype="multipart/form-data">
+	<form action="member.reactivate" method="post" enctype="multipart/form-data">
 		<table id="joinTbl"
 			style="margin-top: 250px; margin-left: auto; margin-right: auto;">
 			<tr align="center">
@@ -33,19 +30,11 @@
 					readonly="readonly">
 				<td>
 			</tr>
-
-			<tr align="center">
-				<td><input class="memberJoin" type="password" name="pw1"
-					placeholder="새비밀번호(8 ~ 16자)" maxlength="16"></td>
-			</tr>
-			<tr align="center">
-				<td><input class="memberJoin" type="password" name="pwck"
-					placeholder="새비밀번호 재입력" maxlength="16"></td>
-			</tr>
 			<tr>
-				<td align="center"><button id="signupButton">확인</button></td>
+				<td align="center"><button id="signupButton">휴면계정 활성화</button></td>
 			</tr>
-		</table>
+
+			</table>
 	</form>
 <table id="joinArea2">
 		<tr>
@@ -80,8 +69,6 @@
 			</td>
 		</tr>
 	</table>
-
-	
 
 </body>
 </html>

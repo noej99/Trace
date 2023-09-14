@@ -62,17 +62,28 @@
 			<td colspan="2">포인트:[[${m.point}]]</td>
 			<td></td>
 			</tr>
-			<tr align="center" th:each="m:${session.loginMember}">
+			<tr align="center">
 			
-				<td><input name="icon1" th:value="${m.icon}" type="hidden"></td>
-				<td><input name=leave1 value="0" type="hidden"></td>
-				
+				<td ></td>
+			<td><select name="icon" class="memberJoin">
+			<option value="icon/dog.jpg">강아지</option>
+			<option value="icon/cat.jpg">고양이</option>
+			<option value="icon/panda.jpg">판다</option>
+			<option value="icon/logo.png">보노</option>
+			<option value="icon/bonobono.png">보노보노</option>
+			<option value="icon/doge.png">도지</option>
+			<option value="icon/goat1.jpg">고트</option>
+			<option value="icon/goat3.jpg">곹</option>
+			<option value="icon/pika.png">돈가스</option>
+			</select></td>
 			</tr>
+			<tr><td></td><th align="center">탈퇴는 1대1 문의 기타</th></tr>
+			
 			<tr>
 			
 				<td colspan="4"><button id="signupButton" disabled>수정</button>
 	</form>
-	<button id="signupButton2" onclick="return memberbye();">탈퇴</button></td>
+	<button id="signupButton2" onclick="return memberbye();">계정 비활성화</button></td>
 			</tr>
 		</table>
 </td> </tr>
