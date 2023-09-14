@@ -34,20 +34,7 @@ public class AdminController {
 		
 		}
 	
-	@RequestMapping("/adimin.delete.writeandmember")
-	public String adminDeleteWriteMember(HttpServletRequest request) {
-		if (mDAO.islogined(request)) {
-			rDAO.getReport(request);
-			aDAO.deleteWriterandMember(request);
-			aDAO.getAllMember(request);
-			mDAO.getLog(request);
-			return "admin/adminview";
-			
-		} else {
-			return "/error";
-		}
-		
-	}
+	
 	@RequestMapping("/adimin.delete.member")
 	public String adminDeleteMember(HttpServletRequest request) {
 		if (mDAO.islogined(request)) {

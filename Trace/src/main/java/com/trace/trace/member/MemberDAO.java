@@ -3,6 +3,7 @@ package com.trace.trace.member;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -72,29 +73,11 @@ public class MemberDAO {
 	}
 	
 
-	public boolean leavemem(int l) {
-		if (l==1) {
-		return true;
-		}else {
-			return false;
-		}
-		
-	}
-	
-	public void updatePw(HttpServletRequest request,Member m) {
-		try {
-			String id=request.getParameter("email");
-			String pw1=request.getParameter("pw1");
 
-			m=mr.findById(id).get();
-			m.setPw(bcpe.encode(pw1));
-			mr.save(m);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
+	
 	public boolean joinEmailIDCk(String email,String inputid) {
-		if (email!=inputid) {
+		if (email!=inputid||email==null) {
+			inputid="";
 			return false;
 		}else {
 			return true;
@@ -107,10 +90,7 @@ public class MemberDAO {
 			String emailckid=(String) request.getSession().getAttribute("emailuser");
 			String id=request.getParameter("email");
 			
-			if (joinEmailIDCk(emailckid, id)==false||emailckid==null) {
-				id="";
-				
-			}
+			joinEmailIDCk(emailckid, id);
 			
 			int leave = Integer.parseInt(request.getParameter("leave1"));
 			String birth1 = request.getParameter("birth1");
@@ -130,7 +110,7 @@ public class MemberDAO {
 			mw.setId1(id);
 			mw.setNick1(m.getNick());
 			mw.setIcon1(m.getIcon());
-			if (mr.findById(m.getId()).isEmpty()) {
+			if (mr.findById(m.getId()).isEmpty()&&mr.findByNick(m.getNick()).isEmpty()) {
 				mr.save(m);
 				mwr.save(mw);
 			}
@@ -159,6 +139,18 @@ public class MemberDAO {
 		request.setAttribute("birth3", births2[2]);
 	}
 	
+	public void updatePw(HttpServletRequest request,Member m) {
+		try {
+			String id=request.getParameter("email");
+			String pw1=request.getParameter("pw1");
+			
+			m=mr.findById(id).get();
+			m.setPw(bcpe.encode(pw1));
+			mr.save(m);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 	public void update(HttpServletRequest request,Member m,MemberWriter mw) {
 		try {
 			Member dbm=(Member) request.getSession().getAttribute("loginMember");
@@ -168,20 +160,25 @@ public class MemberDAO {
 			String pw1=request.getParameter("pw1");
 			String nick=request.getParameter("nick");
 			String name=request.getParameter("name");
+			String icon=request.getParameter("icon");
 			String addr1 = request.getParameter("addr1");
 			String addr2 = request.getParameter("addr2");
 			String addr3 = request.getParameter("addr3");
 			
 			m.setPw(bcpe.encode(pw1));
 			m.setName(name);
+			m.setIcon(icon);
 			m.setNick(nick);
 			m.setAddr(addr1+"!"+addr2+"!"+addr3);
 			mw.setId1(m.getId());
 			mw.setNick1(m.getNick());
 			mw.setIcon1(m.getIcon());
-			mr.save(m);
-			mwr.save(mw);
-			request.getSession().setAttribute("loginMember", m);
+			if (mr.findByNick(m.getNick()).isEmpty()) {
+				
+				mr.save(m);
+				mwr.save(mw);
+				request.getSession().setAttribute("loginMember", m);
+			}
 			
 			
 		} catch (Exception e) {
@@ -197,6 +194,7 @@ public class MemberDAO {
 	}
 	public void delete(HttpServletRequest request) {
 		try {
+			//휴면 계정
 			Member m=(Member) request.getSession().getAttribute("loginMember");
 			
 			m.setLeave(1);
@@ -213,6 +211,13 @@ public class MemberDAO {
 		} 
 		 
 		 
+	}
+	public void reactivate(HttpServletRequest request) {
+		String id=request.getParameter("email");
+		List<Member>m=mr.findByIdEquals(id);
+		m.get(0).setLeave(0);
+		mr.saveAll(m);
+		
 	}
 
 	public boolean islogined(HttpServletRequest request) {

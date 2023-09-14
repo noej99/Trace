@@ -58,21 +58,14 @@ public class AdminDAO {
 		
 	}
 	
-	public void deleteWriterandMember(HttpServletRequest request) {
-		String id= request.getParameter("id");
-		Member m=mr.findById(id).get();
-		m.setLeave(1);
-		if (mr.save(m)!=null) {
-			mwr.deleteById(id);
-			
-		}
+	
 		
-	}
+	
 	public void deleteMember(HttpServletRequest request) {
 		String id= request.getParameter("id");
 		Member m=mr.findById(id).get();
-		m.setLeave(1);
-		mr.save(m); 
+		mwr.deleteById(m.getId());
+		mr.delete(m);
 			
 		
 		

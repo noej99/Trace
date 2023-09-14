@@ -26,7 +26,6 @@ public class EmailController {
 	    String authNum = ems.sendVerificationCode(username);
 	    request.getSession().setAttribute("emailuser", username);
 	    
-	    
 	    return ResponseEntity.status(HttpStatus.OK).body(authNum);
 	}
 	

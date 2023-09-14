@@ -73,7 +73,7 @@ public class MemberController {
 		cDAO.get(request, 0, cd);
 		drDAO.get(request);
 		qDAO.get(request);
-		
+		fDAO.get(request);
 		request.setAttribute("cp", "home");
 		request.setAttribute("cpSub", "homeboard");
 		request.setAttribute("loginPage", "member/logined");
@@ -91,6 +91,7 @@ public class MemberController {
 		cDAO.get(request, 0, cd);
 		drDAO.get(request);
 		qDAO.get(request);
+		fDAO.get(request);
 
 		request.setAttribute("cp", "home");
 		request.setAttribute("cpSub", "homeboard");
@@ -140,7 +141,6 @@ public class MemberController {
 			nDAO.get(request, 0, n);
 			drDAO.get(request);
 			qDAO.get(request);
-			
 			request.setAttribute("cp", "home");
 			request.setAttribute("cpSub", "homeboard");
 			
@@ -178,6 +178,7 @@ public class MemberController {
 			cDAO.get(request, 0, cd);
 			drDAO.get(request);
 			qDAO.get(request);
+			fDAO.get(request);
 
 			request.setAttribute("cp", "home");
 			request.setAttribute("cpSub", "homeboard");
@@ -188,7 +189,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("member.detail.update")
-	public String memberUpdateDetail(HttpServletRequest request, Member m, MemberWriter mw,CodeBoard cd) {
+	public String memberUpdateDetail(HttpServletRequest request, Member m, MemberWriter mw,CodeBoard cd,Notice n) {
 		mDAO.islogined(request);
 		mDAO.login(request, m);
 		mDAO.update(request, m, mw);
@@ -196,7 +197,6 @@ public class MemberController {
 		nDAO.get(request, 0, n);
 		drDAO.get(request);
 		qDAO.get(request);
-		
 		request.setAttribute("loginPage", "member/logined");
 		request.setAttribute("loginSub", "loginedM");
 		request.setAttribute("cp", "home");
@@ -209,14 +209,36 @@ public class MemberController {
 		mDAO.islogined(request);
 		mDAO.login(request, m);
 		mDAO.delete(request);
-		
 		request.setAttribute("loginPage", "member/logined");
 		request.setAttribute("loginSub", "loginedM");
 		request.setAttribute("cp", "home");
 		request.setAttribute("cpSub", "homeboard");
 		return "index";
 	}
-
+	@RequestMapping("member.go.reactivate")
+	public String memberGoReactivate(HttpServletRequest request,Member m,Notice n,CodeBoard cd) {
+		return "member/reactivate";
+		
+	}
+	@RequestMapping("member.reactivate")
+	public String memberReactivate(HttpServletRequest request,Member m,Notice n,CodeBoard cd) {
+		
+		mDAO.islogined(request);
+		mDAO.login(request, m);
+		mDAO.reactivate(request);
+		nDAO.get(request, 0, n);
+		cDAO.get(request, 0, cd);
+		drDAO.get(request);
+		qDAO.get(request);
+		fDAO.get(request);
+		
+		request.setAttribute("loginPage", "member/logined");
+		request.setAttribute("loginSub", "loginedM");
+		request.setAttribute("cp", "home");
+		request.setAttribute("cpSub", "homeboard");
+		return "index";
+		
+	}
 	@RequestMapping("member.findedpw")
 	public String memberFindedPW(HttpServletRequest request, Member m, MemberWriter mw, Notice n,CodeBoard cd) {
 
@@ -227,6 +249,7 @@ public class MemberController {
 		cDAO.get(request, 0, cd);
 		drDAO.get(request);
 		qDAO.get(request);
+		fDAO.get(request);
 
 		request.setAttribute("loginPage", "member/logined");
 		request.setAttribute("loginSub", "loginedM");

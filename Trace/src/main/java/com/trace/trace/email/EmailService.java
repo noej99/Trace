@@ -26,7 +26,6 @@ public class EmailService {
 	        message.setTo(toEmail);
 	        message.setSubject("Email Verification Code");
 	        message.setText("Your verification code is: " + authNumber);
-	        System.out.println(authNumber);
 	        mailSender.send(message);
 	        return Integer.toString(authNumber);
 	    }
